@@ -4,24 +4,26 @@
 
 1. [Introdução](#introduction)
 1. [Tipos abstrtos]('#tipos-abstratos')
-1. [Modulos](#modules)
+1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
 
 ---
 
 ## Tipos Abstratos <a name="tipos-abstratos"></a>
- ***
+
+---
+
 ## Módulos <a name="modules"></a>
 
 ---
 
 ### UTILS
 
-| Função     | Tipo     |  Argumentos  | Descrição                                                                           |
-| :--------- | :------- | :----------: | :---------------------------------------------------------------------------------- |
-| `menu()`   | `void`   |              | Imprime na saída padrão as opções de interação do sistema                           |
-| `cls()`    | `void`   |              | limpa a saida padrão                                                                |
-| `uid(int)` | `char *` | `int length` | Gera um identificador único do proçesso de tamanho `length` recebido como parâmetro |
+| Função     | Tipo     |  Argumentos  | Descrição                                                 |
+| :--------- | :------- | :----------: | :-------------------------------------------------------- |
+| `menu()`   | `void`   |              | Imprime na saída padrão as opções de interação do sistema |
+| `cls()`    | `void`   |              | limpa a saida padrão                                      |
+| `uid(int)` | `char *` | `int length` | Gera um id único do proçesso de tamanho `length`          |
 
 ---
 
