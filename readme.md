@@ -47,8 +47,18 @@
 
 
       git log
-
-##### Build documentação
+---
+## Build documentação
   - Gera arquivo PDF com o mesmo nome do arquivo markdown (não mudar nome do aquivo .md, crie uma cópia com outro nome e compile a cópia, ou mude o nome do arquivo resultado)
 
         md-to-pdf readme.md
+  
+  - Caso não tenha a ferramenta de build
+
+    ~~~python
+    pip install md-to-pdf
+    ~~~
+    
+    ~~~javascript
+    npm install md-to-pdf
+    ~~~
