@@ -17,9 +17,7 @@ int main(){
   do{
     cls();
     // menu de opções
-    
     menu();
-    //menu de opções
     op = getch();
     
     switch(op){
