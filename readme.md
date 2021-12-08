@@ -6,17 +6,18 @@
 
 ### Tipos Abstratos
 
-## Modulos
+## Módulos
 
 ***
 
 ### UTILS
 
-  | Função | Argumentos | Descrição |
-  | :----- | :--------: | :-------- |
-  | `void menu()` |  | Imprime na saída padrão as opções de interação do sistema
-  | `void cls()` | | limpa a saida padrão |
-  | `char* uid(int)` | `int length` | Gera um identificador único do proçesso de tamanho `length` recebido como parâmetro |
+  | Função | Tipo | Argumentos | Descrição |
+  | :----- | :-------- | :--------: | :-------- |
+  | `menu()` | `void` |  | Imprime na saída padrão as opções de interação do sistema
+  | `cls()` | `void` | | limpa a saida padrão |
+  | `uid(int)` | `char *` | `int length` | Gera um identificador único do proçesso de tamanho `length` recebido como parâmetro |
+
 ***
 
 ## Comando para compilar o projeto
