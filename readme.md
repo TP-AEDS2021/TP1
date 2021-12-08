@@ -63,7 +63,6 @@
 
       md-to-pdf readme.md
 
-    >[!CAUTION]
     >
     > - Para gerar o arquivo PDF, é necessário ter instalado o programa `md-to-pdf` , caso não tenha a ferramenta de build de documentação instalada
     >
