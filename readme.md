@@ -22,7 +22,7 @@
 | Função     | Tipo     |  Argumentos  | Descrição                                                 |
 | :--------- | :------- | :----------: | :-------------------------------------------------------- |
 | `menu()`   | `void`   |              | Imprime na saída padrão as opções de interação do sistema |
-| `cls()`    | `void`   |              | limpa a saida padrão                                      |
+| `cls()`    | `void`   |              | Limpa a saida padrão                                      |
 | `uid(int)` | `char *` | `int length` | Gera um id único do proçesso de tamanho `length`          |
 
 ---

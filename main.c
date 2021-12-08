@@ -32,6 +32,12 @@ int main(){
           puts("Erro ao ler o arquivo\n");
           break;
         }
+        file = fopen(filename, "r");
+        if(file == NULL){
+          puts("Erro ao ler o arquivo\n");
+          break;
+        }
+        
         break;
       default:
         puts("Opcao invalida ( digite qualquer tecla )\n");

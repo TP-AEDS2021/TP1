@@ -2,11 +2,13 @@
 #include <time.h>
 
 #define cls() printf("\e[1;1H\e[2J");
+#define now() time(0); 
 
 void menu() {
   puts("Opcoes:\n");
-  puts("0 - Sair");
+  puts("0 - Sair\n");
   puts("1 - Ler arquivo de testes\n");
+  puts("2 - Entradas por teclado\n");
   puts("menu");
 }
 
