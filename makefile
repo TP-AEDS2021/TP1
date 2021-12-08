@@ -5,7 +5,7 @@ func.o: tad.h
 	gcc -c func.c
 
 clean:
-	rm -rf *.o
+	del *.o *exe
 
 run:
 	./main
