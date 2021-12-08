@@ -9,9 +9,9 @@
 
 ---
 
-## Tipos Abstratos <a href="tipos-abstratos"></a>
+## Tipos Abstratos <a name="tipos-abstratos"></a>
  ***
-## Módulos <a href="modules"></a>
+## Módulos <a name="modules"></a>
 
 ---
 
@@ -25,7 +25,7 @@
 
 ---
 
-## Comando para compilar o projeto <a href="compilando-o-projeto"></a>
+## Comando para compilar o projeto <a name="compilando-o-projeto"></a>
 
     make
 
