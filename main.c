@@ -17,8 +17,7 @@ int main(){
   do{
     cls();
     // menu de opções
-    printf("Opcoes:\n");
-    printf("1 - Ler arquivo de testes\n");
+    
     menu();
     //menu de opções
     op = getch();
@@ -26,17 +25,20 @@ int main(){
     switch(op){
       case '0':
         exit(0);
+        break;
       case '1':
-        printf("Digite o nome do arquivo: ");
+        puts("Digite o nome do arquivo: ");
         scanf("%s", filename);
         fflush(stdin);
         if(filename == NULL){
-          printf("Erro ao ler o arquivo\n");
+          puts("Erro ao ler o arquivo\n");
           break;
         }
         break;
       default:
-        printf("Opcao invalida\n");
+        puts("Opcao invalida ( digite qualquer tecla )\n");
+        getch();
+        break;
     }
   }while(op != 'q');
 

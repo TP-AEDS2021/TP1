@@ -1,7 +1,9 @@
-#ifndef cls()
+
 #define cls() printf("\e[1;1H\e[2J");
-#endif
 
 void menu() {
-  printf("menu");
+  puts("Opcoes:\n");
+  puts("0 - Sair");
+  puts("1 - Ler arquivo de testes\n");
+  puts("menu");
 }
