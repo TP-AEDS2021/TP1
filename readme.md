@@ -1,7 +1,9 @@
 # TP 1 de Algoritmos e Estruturas de Dados
 
 ## Introdução
+
 ***
+
 ## Modulos
 
 ### UTILS
@@ -11,6 +13,7 @@
   | `menu()` |  | Imprime na saída padrão as opções de interação do sistema |
   | `cls()` | | limpa a saida padrão
 ***
+
 ## Comando para compilar o projeto
 
     make
@@ -21,6 +24,7 @@
     make clean
     make all
 ***
+
 ## Comandos principais
 
 - adiciona alteração para ser enviado
@@ -61,7 +65,7 @@
 
     >[!CAUTION]
     >
-    >  - Para gerar o arquivo PDF, é necessário ter instalado o programa `md-to-pdf` , caso não tenha a ferramenta de build de documentação instalada
+    > - Para gerar o arquivo PDF, é necessário ter instalado o programa `md-to-pdf` , caso não tenha a ferramenta de build de documentação instalada
     >
     <br>
 
