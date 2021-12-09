@@ -38,9 +38,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install dependencies
         run: |
-          sudo apt update,
-          sudo apt install build-essential,
-          sudo apt-get install manpages-dev,
           gcc --version
       - name: Run the build
         run: |
