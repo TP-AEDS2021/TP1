@@ -41,5 +41,4 @@ jobs:
           gcc --version
       - name: Run the build
         run: |
-          cd $GITHUB_WORKSPACE,
           make
