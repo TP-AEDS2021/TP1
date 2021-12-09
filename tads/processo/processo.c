@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "processo.h"
-#include "utils/utils.c"
+#include "../../utils/utils.c"
 
 // funcao para inicializar o processo
 void inicializa_processo(Processo *processo)

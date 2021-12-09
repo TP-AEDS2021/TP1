@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "processo.h"
-#include "processo.c"
+#include "./tads/processo/processo.h"
+#include "./tads/processo/processo.c"
 
 int main()
 {

@@ -5,10 +5,10 @@ utils.o: processo.c
 	gcc -c ./utils/utils.c -o utils.o
 
 processo.c: processo.h
-	gcc -c ./processo.c -o processo.o
+	gcc -c ./tads/processo/processo.c -o processo.o
 
 processo.h:
-	gcc -E .processo.h -o processo.h
+	gcc -E ./tads/processo/processo.h -o processo.h
 
 clean:
 	del *.o *exe
