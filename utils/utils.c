@@ -25,8 +25,9 @@ void menu()
   puts("2 - Entradas por teclado");
 }
 
-char *uid(int length)
+char *pid()
 {
+  int length = 20;
   static int mySeed = 25011984;
   char *string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";
   size_t stringLen = strlen(string);
