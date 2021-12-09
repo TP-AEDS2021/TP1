@@ -15,7 +15,7 @@ typedef struct Tprocesso
 void inicializa_processo(Processo*);
 
 //funcao para imprimir o processo
-void imprime_processo(Processo*);
+void imprime_processo(Processo);
 
 //gets e sets
 int get_PID(Processo*);
