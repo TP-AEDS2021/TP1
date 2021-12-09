@@ -7,12 +7,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include "./utils/utils.c"
+#include "processo.h"
 
 
 int main(){
-  
+
   FILE *file;
   char *filename, op;
+
+Processo teste;
+inicializa_processo(&teste);
+imprime_processo(&teste);
+
   do{
     cls();
     // menu de opções
