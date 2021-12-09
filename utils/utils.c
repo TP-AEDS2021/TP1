@@ -5,15 +5,13 @@
 
 #define cls() printf("\e[1;1H\e[2J");
 
-void curtime()
-{
+struct tm* curtime(){
 
   time_t rawtime;
   struct tm *timeinfo;
   time(&rawtime);
   timeinfo = localtime(&rawtime);
-
-  printf("[%d %d %d %d:%d:%d]\n", timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+  return timeinfo;
 }
 
 void menu()
