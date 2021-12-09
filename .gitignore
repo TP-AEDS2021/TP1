@@ -2,3 +2,5 @@
 *.exe
 *.out
 *.txt
+*.o 
+*.pdf

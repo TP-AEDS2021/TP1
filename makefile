@@ -1,11 +1,11 @@
-all: func.o
+all: utils.o
 	gcc main.c -o main
 
-func.o: tad.h
-	gcc -c func.c
+utils.o:
+	gcc -c ./utils/utils.c -o utils.o
 
 clean:
-	rm -rf *.o
+	del *.o *exe
 
 run:
 	./main
