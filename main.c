@@ -37,7 +37,7 @@ int main(){
           puts("Erro ao ler o arquivo\n");
           break;
         }
-        
+        getch();
         break;
       default:
         puts("Opcao invalida ( digite qualquer tecla )\n");

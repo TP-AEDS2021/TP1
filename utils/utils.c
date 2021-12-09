@@ -1,19 +1,31 @@
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 #define cls() printf("\e[1;1H\e[2J");
-#define now() time(0); 
 
-void menu() {
-  puts("Opcoes:\n");
-  puts("0 - Sair\n");
-  puts("1 - Ler arquivo de testes\n");
-  puts("2 - Entradas por teclado\n");
-  puts("menu");
+void curtime()
+{
+
+  time_t rawtime;
+  struct tm *timeinfo;
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
+
+  printf("[%d %d %d %d:%d:%d]\n", timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
 }
 
+void menu()
+{
+  curtime();
+  puts("Opcoes:");
+  puts("0 - Sair");
+  puts("1 - Ler arquivo de testes");
+  puts("2 - Entradas por teclado");
+}
 
-char * uid(int length)
+char *uid(int length)
 {
   static int mySeed = 25011984;
   char *string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";
