@@ -1,5 +1,5 @@
 # All actions have a name that will be displayed in the "Actions" page in GitHub.
-name: CI
+name: C build
 
 
 # The "on" option will specify when to run this action and on which branch
@@ -36,7 +36,13 @@ jobs:
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          sudo apt update,
+          sudo apt install build-essential,
+          sudo apt-get install manpages-dev,
+          gcc --version
+      - name: Run the build
+        run: |
+          cd $GITHUB_WORKSPACE,
+          make
