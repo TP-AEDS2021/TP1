@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
 #include "./utils/utils.c"
 
 
@@ -18,30 +17,31 @@ int main(){
     cls();
     // menu de opções
     menu();
-    op = getch();
+    op = getchar();
     
     switch(op){
       case '0':
         exit(0);
         break;
       case '1':
-        puts("Digite o nome do arquivo: ");
+        puts("Digite o nome do arquivo: \n");
         scanf("%s", filename);
         fflush(stdin);
         if(filename == NULL){
-          puts("Erro ao ler o arquivo\n");
+          puts("Erro ao ler o arquivo\n pressione enter para continuar");
           break;
         }
         file = fopen(filename, "r");
         if(file == NULL){
-          puts("Erro ao ler o arquivo\n");
+          puts("Erro ao ler o arquivo\n pressione enter para continuar");
           break;
         }
-        getch();
+        puts("Arquivo lido com sucesso\n pressione enter para continuar");
+        getchar();
         break;
       default:
         puts("Opcao invalida ( digite qualquer tecla )\n");
-        getch();
+        getchar();
         break;
     }
   }while(op != 'q');
