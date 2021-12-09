@@ -5,7 +5,7 @@
 
 #define cls() printf("\e[1;1H\e[2J");
 
-struct tm* curtime(){
+struct tm* currentTime(){
 
   time_t rawtime;
   struct tm *timeinfo;
@@ -16,7 +16,6 @@ struct tm* curtime(){
 
 void menu()
 {
-  curtime();
   puts("Opcoes:");
   puts("0 - Sair");
   puts("1 - Ler arquivo de testes");
