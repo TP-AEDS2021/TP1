@@ -69,6 +69,9 @@
 
       git log
 
+- busca alterações no repositório
+
+      git fetch -p -t
 ---
 
 ## Compilar a documentação
