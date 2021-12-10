@@ -1,11 +1,11 @@
 #include <stdlib.h>
-#include ".\lista_processos\lista_processo.h"
-#include ".\processo\processo.h"
+#include "./lista_processo.h"
+#include "../processo/processo.h"
 
 // Inicializa uma celula com o processo passado como parametro
 void inicializa_celula(Celula *celula, struct Tprocesso *processo) {
-  celula->prox = NULL;
-  celula->ant = NULL;
+  celula->prox = 0;
+  celula->ant = 0;
   celula->processo = processo;
 }
 // Inicializa uma lista de processos
