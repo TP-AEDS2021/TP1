@@ -8,12 +8,20 @@
 #include <string.h>
 #include "./tads/processo/processo.h"
 #include "./tads/processo/processo.c"
+#include "./tads/lista_processos/lista_processo.h"
+#include "./tads/lista_processos/lista_processo.c"
 
 int main()
 {
 
   FILE *file;
   char *filename, op;
+  Lista *lista_processos;
+  Processo *processo = (Processo *)malloc(sizeof(Processo));
+  inicializa_processo(processo);
+  inicializa_lista(lista_processos, 2);
+  
+
 
   getchar();
 
@@ -41,10 +49,11 @@ int main()
       file = fopen(filename, "r");
       if (file == NULL)
       {
-        puts("Erro ao ler o arquivo\n pressione enter para continuar");
+        puts("Erro ao ler o arquivo\t (pressione enter para continuar)");
+        getchar();
         break;
       }
-      puts("Arquivo lido com sucesso\n pressione enter para continuar");
+      puts("Arquivo lido com sucesso\t (pressione enter para continuar)");
       getchar();
       break;
     default:
