@@ -1,7 +1,7 @@
 #ifndef LISTA_PROCESSO_H
 #define LISTA_PROCESSO_H
 
-#include "./tads/processo/processo.h"
+#include "../processo/processo.h"
 
 typedef struct Tcelula {
   struct Tprocesso *processo;
