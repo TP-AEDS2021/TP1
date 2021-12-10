@@ -17,8 +17,12 @@ typedef struct Tlista {
   Celula *lista;
 } Lista;
 
-void inicializa_celula(Celula *celula);
-void inicializa_lista(Lista *lista);
+void inicializa_celula(Celula *celula, struct Tprocesso *processo);
+void inicializa_lista(Lista *lista, int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
+void remove_celula(Lista *lista, int indice);
+void remove_primeiro(Lista *lista);
+void remove_ultimo(Lista *lista);
+void imprime_lista(Lista *lista);
 
 #endif // LISTA_PROCESSO_H
