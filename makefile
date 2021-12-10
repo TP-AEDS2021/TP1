@@ -1,16 +1,17 @@
-all: lista_processo.o
+all: utils.o
 	gcc main.c -o main.exe
 
-lista_processo.o: lista_processo.h
-	gcc -c list_processo.c -o list_processo.o
-
-lista_processo.h: utils.o
-	gcc -E ./tads/lista_processos/lista_processo.h -o lista_processo.h
-
-utils.o: processo.c
+utils.o: lista_processo.o
 	gcc -c ./utils/utils.c -o utils.o
 
-processo.c: processo.h
+lista_processo.o: lista_processo.h
+	gcc -c ./tads/lista_processos/lista_processo.c -o list_processo.o
+
+lista_processo.h: processo.o
+	gcc -E ./tads/lista_processos/lista_processo.h -o lista_processo.h
+
+
+processo.o: processo.h
 	gcc -c ./tads/processo/processo.c -o processo.o
 
 processo.h:
