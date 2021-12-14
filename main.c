@@ -17,11 +17,15 @@ int main()
   FILE *file;
   char *filename, op;
   Lista *lista_processos;
-  Processo *processo = (Processo *)malloc(sizeof(Processo));
-  inicializa_processo(processo);
-  inicializa_lista(lista_processos, 2);
-  
+  Processo processo, processo2;
 
+  inicializa_processo(&processo);
+  inicializa_processo(&processo2);
+  inicializa_lista(lista_processos, 4);
+  printf("ola");
+  printf("%d", lista_processos->ultimo);
+
+    return 0;
 
   getchar();
 

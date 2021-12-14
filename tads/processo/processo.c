@@ -5,10 +5,13 @@
 #include "../../utils/utils.c"
 
 
+
 // funcao para inicializar o processo
 void inicializa_processo(Processo *processo)
 {
-  set_PID(processo, rand());
+  srand(time(NULL));
+  set_PID(processo, rand()  );
+  srand(time(NULL));
   set_prioridade(processo, (rand() % 5) + 1);
   set_horario_criacao(processo, currentTime());
 }

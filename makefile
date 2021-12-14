@@ -1,5 +1,5 @@
 all: utils.o
-	gcc main.c -o main.exe
+	gcc main.c -o main
 
 utils.o: lista_processo.o
 	gcc -c ./utils/utils.c -o utils.o
@@ -18,7 +18,8 @@ processo.h:
 	gcc -E ./tads/processo/processo.h -o processo.h
 
 clean:
-	del *.o *exe
+	del *.o *exe *.h
 
 run:
 	./main.exe
+
