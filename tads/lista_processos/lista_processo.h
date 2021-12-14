@@ -3,18 +3,20 @@
 
 #include "../processo/processo.h"
 
+typedef int cursor;
+
 typedef struct Tcelula {
-  struct Tprocesso *processo;
-  int ant;
-  int prox;
+  Processo *processo;
+  cursor ant;
+  cursor prox;
 } Celula;
 
 typedef struct Tlista {
-  int primeiro;
-  int celula_disponivel;
-  int ultimo;
+  cursor primeiro;
+  cursor primeira_disponivel;
+  cursor ultimo;
   int numCelOcupadas;
-  Celula *lista;
+  Celula *plista;
 } Lista;
 
 void inicializa_celula(Celula *celula, struct Tprocesso *processo);
