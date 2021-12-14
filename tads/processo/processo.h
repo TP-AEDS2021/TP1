@@ -6,7 +6,7 @@
 //definicao do tipo
 typedef struct Tprocesso
 {
-    int PID;
+    int PID; // identificador do processo
     int prioridade;
     struct tm* horario_criacao;
 } Processo;
