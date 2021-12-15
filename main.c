@@ -17,6 +17,7 @@ int main()
   FILE *file;
   char *filename, op;
   Lista *lista_processos;
+  
   inicializa_lista(lista_processos, 4);
 
   for (int i = 0; i < 10; i++){

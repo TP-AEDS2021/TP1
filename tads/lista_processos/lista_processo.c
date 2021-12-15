@@ -42,14 +42,32 @@ void adiciona_celula(Lista *lista, Celula *celula)
     lista->numCelOcupadas++;
     lista->primeira_disponivel = 1;
   }
+  if(lista->numCelOcupadas == 1){
+    if(celula->processo->PID >= lista->plista[lista->primeiro].processo->PID){
+      celula->ant = lista->primeiro;
+      celula->prox = -1;
+      lista->plista[lista->primeira_disponivel] = *celula;
+      lista->ultimo = 1;
+      lista->numCelOcupadas++;
+    }
+    else{
+
+    }
+  }
   else
   {
+    int tam = sizeof(lista->plista) / sizeof(Celula);
+    if(lista->numCelOcupadas >= tam)
+    {
+      printf("Lista cheia");
+      return;
+    }
     cursor index = lista->primeiro;
     while (lista->plista[index].prox != -1)
     {
       if (lista->plista[index].processo->PID <= celula->processo->PID)
       {
-        index = lista->plista[index].prox;
+        index++;
         continue;
       }
       else
@@ -64,12 +82,11 @@ void adiciona_celula(Lista *lista, Celula *celula)
     celula->prox = aux2;
     celula->ant = aux1;
     lista->numCelOcupadas++;
-    int tam = (sizeof(lista->plista) / sizeof(Celula));
-    if (lista->primeira_disponivel >= tam)
-    {
-    }
   }
 }
+
+
+
 void remove_celula(Lista *lista, int indice)
 {
 }
