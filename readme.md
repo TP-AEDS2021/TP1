@@ -5,16 +5,17 @@
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
 1. [Tipos abstratos]('#tipos-abstratos')
-    * [Processo]('#processo')
-    * [Cursor](#cursor)
-    * [Celula](#celula)
-    * [Lista](#lista)
+
+   - [Processo]('#processo')
+   - [Cursor](#cursor)
+   - [Celula](#celula)
+   - [Lista](#lista)
 
 1. [Como compilar a documentação](#compilando-a-documentacao)
 
 ---
 
-## Módulos <a name="#modules"></a>
+## Módulos <a name="modules"></a>
 
 ---
 
@@ -36,43 +37,43 @@
 
 <div style="page-break-before:always">
 
-## <a name="tipos-abstratos">Tipos abstratos</a>
+## Tipos abstratos <a name="tipos-abstratos"></a>
 
-## **Processo** <processo>
+## **Processo** <a name="processo"></a>
 
-  - **Tipo**
+- **Tipo**
 
-    | Campo             | Tipo         | Descrição                                                                                  |
-    | ----------------- | ------------ | ------------------------------------------------------------------------------------------ |
-    | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
-    | `prioridade`      | `int`        | A prioridade do processo ( `de 1 a 5` ) .(`Gerado aleatoriamente na criação do processo`). |
-    | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                    |
+  | Campo             | Tipo         | Descrição                                                                                  |
+  | ----------------- | ------------ | ------------------------------------------------------------------------------------------ |
+  | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
+  | `prioridade`      | `int`        | A prioridade do processo ( `de 1 a 5` ) .(`Gerado aleatoriamente na criação do processo`). |
+  | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                    |
 
-    ```C
-    typedef struct Tprocesso
-      {
-          int PID; // identificador do processo
-          int prioridade; //prioridade do processo
-          struct tm* horario_criacao; // horario de criacao do processo
-      } Processo;
-    ```
+  ```C
+  typedef struct Tprocesso
+    {
+        int PID; // identificador do processo
+        int prioridade; //prioridade do processo
+        struct tm* horario_criacao; // horario de criacao do processo
+    } Processo;
+  ```
 
-  - **_Funções_**
+- **_Funções_**
 
-    | Função                | Tipo         | Argumentos                 | Descrição                                                                     |
-    | --------------------- | ------------ | -------------------------- | ----------------------------------------------------------------------------- |
-    | `inicializa_processo` | `void`       | `(Processo* )`             | Inicializa o processo com os valores de PID, prioridade e horario de criacao. |
-    | `imprime_processo`    | `void`       | `(Processo)`               | imprime os campos do processo.                                                |
-    | `get_PID`             | `int`        | `(Processo*)`              | Retorna o valor do campo PID.                                                 |
-    | `set_PID`             | `void`       | `(Processo* , int)`        | Define o valor do campo PID.                                                  |
-    | `get_prioridade`      | `int`        | `(Processo*)`              | Retorna o valor do campo prioridade.                                          |
-    | `set_prioridade`      | `void`       | `(Processo* , int)`        | Define o valor do campo prioridade.                                           |
-    | `get_horario_criacao` | `struct tm*` | `(Processo*)`              | Retorna o valor do campo horario_criacao.                                     |
-    | `set_horario_criacao` | `void`       | `(Processo* , struct tm*)` | Define o valor do campo horario_criacao.                                      |
+  | Função                | Tipo         | Argumentos                 | Descrição                                                                     |
+  | --------------------- | ------------ | -------------------------- | ----------------------------------------------------------------------------- |
+  | `inicializa_processo` | `void`       | `(Processo* )`             | Inicializa o processo com os valores de PID, prioridade e horario de criacao. |
+  | `imprime_processo`    | `void`       | `(Processo)`               | imprime os campos do processo.                                                |
+  | `get_PID`             | `int`        | `(Processo*)`              | Retorna o valor do campo PID.                                                 |
+  | `set_PID`             | `void`       | `(Processo* , int)`        | Define o valor do campo PID.                                                  |
+  | `get_prioridade`      | `int`        | `(Processo*)`              | Retorna o valor do campo prioridade.                                          |
+  | `set_prioridade`      | `void`       | `(Processo* , int)`        | Define o valor do campo prioridade.                                           |
+  | `get_horario_criacao` | `struct tm*` | `(Processo*)`              | Retorna o valor do campo horario_criacao.                                     |
+  | `set_horario_criacao` | `void`       | `(Processo* , struct tm*)` | Define o valor do campo horario_criacao.                                      |
 
 </div>
 
-## **Cursor** <cursor>
+## **Cursor** <a name="cursor"></a>
 
 - Tipo
 
@@ -82,68 +83,68 @@
   typedef int cursor;
   ```
 
-## **Celula** <celula>
+## **Celula** <a name="celula"></a>
 
-  - Tipo
+- Tipo
 
-    `Celula é um tipo abstrato que representa um elemento de uma lista.`
+  `Celula é um tipo abstrato que representa um elemento de uma lista.`
 
-    | Campo      | tipo         | Descrição                                      |
-    | ---------- | ------------ | ---------------------------------------------- |
-    | `processo` | `Processo *` | O processo que está armazenado na celula.      |
-    | `prox`     | `cursor`     | O apontador (`indice`) para a próxima celula.  |
-    | `ant`      | `cursor`     | O apontador (`indice`) para a celula anterior. |
+  | Campo      | tipo         | Descrição                                      |
+  | ---------- | ------------ | ---------------------------------------------- |
+  | `processo` | `Processo *` | O processo que está armazenado na celula.      |
+  | `prox`     | `cursor`     | O apontador (`indice`) para a próxima celula.  |
+  | `ant`      | `cursor`     | O apontador (`indice`) para a celula anterior. |
 
-    ```C
-    typedef struct Tcelula {
-      Processo *processo;
-      cursor ant;
-      cursor prox;
-    } Celula;
-    ```
+  ```C
+  typedef struct Tcelula {
+    Processo *processo;
+    cursor ant;
+    cursor prox;
+  } Celula;
+  ```
 
-  - **_Funções_**
+- **_Funções_**
 
-      | Função                   | Tipo   | Argumentos              | Descrição                                                                                             |
-      | ------------------------ | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------- |
-      | `inicializa_celula_nula` | `void` | `(Celula* , int)`       | Inicializa a celula com o valor de `prox` passado como parametro, `ant` igual a -1 e processo `NULL`. |
-      | `inicializa_celula`      | `void` | `(Celula* , Processo*)` | Inicializa a celula com `prox` e `ant` como -1, e o campo processo passado como parametro.            |
+  | Função                   | Tipo   | Argumentos              | Descrição                                                                                             |
+  | ------------------------ | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------- |
+  | `inicializa_celula_nula` | `void` | `(Celula* , int)`       | Inicializa a celula com o valor de `prox` passado como parametro, `ant` igual a -1 e processo `NULL`. |
+  | `inicializa_celula`      | `void` | `(Celula* , Processo*)` | Inicializa a celula com `prox` e `ant` como -1, e o campo processo passado como parametro.            |
 
 <div style="page-break-before:always">
 
-## **Lista** <lista>
+## **Lista** <a name="lista"></a>
 
-  - Tipo
+- Tipo
 
-    | Campo                 | tipo      | Descrição                                                 |
-    | --------------------- | --------- | --------------------------------------------------------- |
-    | `primeiro`            | `cursor`  | O apontador (`indice`) para a primeira celula.            |
-    | `ultimo`              | `cursor`  | O apontador (`indice`) para a ultima celula.              |
-    | `primeira_disponivel` | `cursor`  | O apontador (`indice`) para a primeira celula disponivel. |
-    | `numCelOcupadas`      | `int`     | O numero de celulas ocupadas.                             |
-    | `plista`              | `Celula*` | O ponteiro para a lista.                                  |
-    | `tamanho`             | `int`     | O tamanho da lista.                                       |
+  | Campo                 | tipo      | Descrição                                                 |
+  | --------------------- | --------- | --------------------------------------------------------- |
+  | `primeiro`            | `cursor`  | O apontador (`indice`) para a primeira celula.            |
+  | `ultimo`              | `cursor`  | O apontador (`indice`) para a ultima celula.              |
+  | `primeira_disponivel` | `cursor`  | O apontador (`indice`) para a primeira celula disponivel. |
+  | `numCelOcupadas`      | `int`     | O numero de celulas ocupadas.                             |
+  | `plista`              | `Celula*` | O ponteiro para a lista.                                  |
+  | `tamanho`             | `int`     | O tamanho da lista.                                       |
 
-    ```C
-    typedef struct Tlista {
-      cursor primeiro;
-      cursor primeira_disponivel;
-      cursor ultimo;
-      int numCelOcupadas;
-      Celula *plista;
-    } Lista;
-    ```
+  ```C
+  typedef struct Tlista {
+    cursor primeiro;
+    cursor primeira_disponivel;
+    cursor ultimo;
+    int numCelOcupadas;
+    Celula *plista;
+  } Lista;
+  ```
 
-  - **Funções**
+- **Funções**
 
-    | Função             | Tipo   | Argumento           | Descrição                                                                                                                                      |
-    | ------------------ | ------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `inicializa_lista` | `void` | `(Lista*, int)`     | Aloca um espaço de memória para a lista, inicializa o primeiro e ultimo como -1 e o primeira_disponivel e o numero de celulas ocupadas como 0. |
-    | `adiciona_celula`  | `void` | `(Lista*, Celula*)` | Adiciona celulas ordenadamente à lista.                                                                                                        |
-    | `remove_celula`    | `void` | `(Lista*, int)`     | Remove uma celula da lista em determinado índice.                                                                                              |
-    | `remove_primeiro`  | `void` | `(Lista*)`          | Remove a primeira celula da lista.                                                                                                             |
-    | `remove_ultimo`    | `void` | `(Lista*)`          | Remove a ultima celula da lista.                                                                                                               |
-    | `imprime_lista`    | `void` | `(Lista*)`          | Imprime todos os processos da lista.                                                                                                           |
+  | Função             | Tipo   | Argumento           | Descrição                                                                                                                                      |
+  | ------------------ | ------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `inicializa_lista` | `void` | `(Lista*, int)`     | Aloca um espaço de memória para a lista, inicializa o primeiro e ultimo como -1 e o primeira_disponivel e o numero de celulas ocupadas como 0. |
+  | `adiciona_celula`  | `void` | `(Lista*, Celula*)` | Adiciona celulas ordenadamente à lista.                                                                                                        |
+  | `remove_celula`    | `void` | `(Lista*, int)`     | Remove uma celula da lista em determinado índice.                                                                                              |
+  | `remove_primeiro`  | `void` | `(Lista*)`          | Remove a primeira celula da lista.                                                                                                             |
+  | `remove_ultimo`    | `void` | `(Lista*)`          | Remove a ultima celula da lista.                                                                                                               |
+  | `imprime_lista`    | `void` | `(Lista*)`          | Imprime todos os processos da lista.                                                                                                           |
 
 ---
 
@@ -151,7 +152,7 @@
 
 <div style="page-break-before:always">
 
-## Comandos principais
+## Comandos principais <a name="comandos"></a>
 
 - adiciona alteração para ser enviado
 
@@ -205,7 +206,7 @@
 
 </div>
 
-## Compilar a documentação <compilando-a-documentacao>
+## Compilar a documentação <a name="compilando-a-documentacao"></a>
 
 ```bash
     make doc
