@@ -29,7 +29,6 @@
     make
 ```
 
-
 <div style="page-break-before:always">
 
 ## Tipos Abstratos <tipos-abstratos>
@@ -73,6 +72,7 @@
 - Tipo
 
   `Cursor representa um apontador (indice) para um elemento de uma lista.`
+
   ```C
   typedef int cursor;
   ```
