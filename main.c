@@ -17,15 +17,19 @@ int main()
   FILE *file;
   char *filename, op;
   Lista *lista_processos;
-  Processo processo, processo2;
-
-  inicializa_processo(&processo);
-  inicializa_processo(&processo2);
   inicializa_lista(lista_processos, 4);
-  printf("ola");
-  printf("%d", lista_processos->ultimo);
 
-    return 0;
+  for (int i = 0; i < 10; i++){
+    Processo p;
+    Celula *celula;
+    inicializa_processo(&p);
+    inicializa_celula(celula, &p);
+    adiciona_celula(lista_processos, celula);
+  }
+    
+
+
+  return 0;
 
   getchar();
 

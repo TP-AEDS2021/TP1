@@ -20,6 +20,7 @@ typedef struct Tlista {
 } Lista;
 
 void inicializa_celula(Celula *celula, struct Tprocesso *processo);
+void inicializa_celula_nula(Celula *, int);
 void inicializa_lista(Lista *lista, int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_celula(Lista *lista, int indice);

@@ -1,5 +1,5 @@
 all: utils.o
-	gcc main.c -o main
+	gcc -g main.c -o main
 
 utils.o: lista_processo.o
 	gcc -c ./utils/utils.c -o utils.o
