@@ -12,26 +12,28 @@
 ## Tipos Abstratos <a name="tipos-abstratos"></a>
 
 ---
-<detail><summary>Processo</summary>
-<p>
 
+<details>
+  <summary> <span style="font-size:30px, font-weight:900">Processo</span> </summary>
+  
 ### **Processo**
 
-  | Campo | Tipo | Descrição |
-  | ------ | ---- | ---------- |
-  | `PID` | `int` | Um indentifiador único de cada processo ( `PID` ) que é um inteiro positivo gerado aleatoriamente. Usado para ordenar os processos |
-  | `prioridade`| `int` | A prioridade do processo. O valor deve ser um inteiro entre 0 e 5. (Gerado aleatoriamente na criação do processo). |
-  | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado. | 
-  ```
-  typedef struct Tprocesso
-    {
-        int PID; // identificador do processo
-        int prioridade; //prioridade do processo
-        struct tm* horario_criacao; // horario de criacao do processo
-    } Processo;
-  ```
-</p>
-</detail>
+| Campo             | Tipo         | Descrição                                                                                                                          |
+| ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ) que é um inteiro positivo gerado aleatoriamente. Usado para ordenar os processos |
+| `prioridade`      | `int`        | A prioridade do processo. O valor deve ser um inteiro entre 0 e 5. (Gerado aleatoriamente na criação do processo).                 |
+| `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                                                            |
+
+```C
+typedef struct Tprocesso
+  {
+      int PID; // identificador do processo
+      int prioridade; //prioridade do processo
+      struct tm* horario_criacao; // horario de criacao do processo
+  } Processo;
+```
+
+</details>
 
 ## Módulos <a name="modules"></a>
 
