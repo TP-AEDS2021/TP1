@@ -5,10 +5,10 @@
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
 1. [Tipos abstratos]('#tipos-abstratos')
-  1. [Processo]('#listas')
-  1. [Cursor]
-  1. [Celula]
-  1. [Lista]
+    2. [Processo]('#processo')
+    2. [Cursor](#cursor)
+    2. [Celula](#celula)
+    2. [Lista](#lista)
 
 1. [Como compilar a documentação](#compilando-a-documentacao)
 
@@ -38,7 +38,7 @@
 
 ## Tipos Abstratos <tipos-abstratos>
 
-## **Processo**
+## **Processo** <processo>
 
   - **Tipo**
 
@@ -72,7 +72,7 @@
 
 </div>
 
-## **Cursor**
+## **Cursor** <cursor>
 
 - Tipo
 
@@ -82,7 +82,7 @@
   typedef int cursor;
   ```
 
-## **Celula**
+## **Celula** <celula>
 
   - Tipo
 
@@ -111,7 +111,7 @@
 
 <div style="page-break-before:always">
 
-## **Lista**
+## **Lista** <lista>
 
   - Tipo
 
