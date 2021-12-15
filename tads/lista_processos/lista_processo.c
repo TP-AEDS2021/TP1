@@ -9,20 +9,20 @@ void inicializa_celula_nula(Celula *celula, int index)
   celula->ant = -1;
 }
 
-void inicializa_lista(Lista *lista, int tamanho)
-{
-  lista = (Lista *)malloc(sizeof(Lista));
-  lista->primeiro = -1;                                         // incice - cursor
-  lista->ultimo = -1;                                           // indice - cursor
-  lista->numCelOcupadas = 0;                                    // numero de celulas ocupadas
-  lista->primeira_disponivel = 0;                               // indice da primeira celula disponivel
-  lista->plista = (Celula *)malloc(tamanho * (sizeof(Celula))); // aloca o lista de celulas
-  if (lista->plista == NULL)
+  void inicializa_lista(Lista *lista, int tamanho)
   {
-    printf("Erro ao inicializar a lista");
-    exit(1);
+    lista = (Lista *)malloc(sizeof(Lista));
+    lista->primeiro = -1;                                         // incice - cursor
+    lista->ultimo = -1;                                           // indice - cursor
+    lista->numCelOcupadas = 0;                                    // numero de celulas ocupadas
+    lista->primeira_disponivel = 0;                               // indice da primeira celula disponivel
+    lista->plista = (Celula *)malloc(tamanho * (sizeof(Celula))); // aloca o lista de celulas
+    if (lista->plista == NULL)
+    {
+      printf("Erro ao inicializar a lista");
+      exit(1);
+    }
   }
-}
 
 void iniciliza_celula(Celula *celula, Processo *processo)
 {

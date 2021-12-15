@@ -142,6 +142,12 @@
 
   | Função | Tipo | Argumento | Descrição | 
   | ------- | ---- | --------- | --------- |
+  | `inicializa_lista` | `void` | `(Lista*, int)` | Aloca um espaço de memória para a lista, inicializa o primeiro e ultimo como -1 e o primeira_disponivel e o numero de celulas ocupadas como 0. |
+  | `adiciona_celula` | `void` | `(Lista*, Celula*)` | Adiciona celulas ordenadamente à lista. |
+  | `remove_celula` | `void` | `(Lista*, int)` | Remove uma celula da lista em determinado índice. |
+  | `remove_primeiro` | `void` | `(Lista*)` | Remove a primeira celula da lista. |
+  | `remove_ultimo` | `void` | `(Lista*)` | Remove a ultima celula da lista. |
+  | `imprime_lista` | `void` | `(Lista*)` | Imprime todos os processos da lista. |
 
 ---
 
