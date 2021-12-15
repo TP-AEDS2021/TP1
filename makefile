@@ -18,7 +18,7 @@ processo.h:
 	gcc -E ./tads/processo/processo.h -o processo.h
 
 doc:
-	md-to-pdf readme.md
+	md-to-pdf readme.md --document-title="Documentação TP 1"
 
 clean:
 	del *.o *exe *.h
