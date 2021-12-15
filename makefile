@@ -17,6 +17,9 @@ processo.o: processo.h
 processo.h:
 	gcc -E ./tads/processo/processo.h -o processo.h
 
+doc:
+	md-to-pdf readme.md
+
 clean:
 	del *.o *exe *.h
 

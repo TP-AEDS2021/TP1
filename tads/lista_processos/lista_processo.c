@@ -3,14 +3,6 @@
 #include "./lista_processo.h"
 #include "../processo/processo.h"
 
-// Inicializa uma celula com o processo passado como parametro
-// void inicializa_celula(Celula *celula, struct Tprocesso *processo)
-// {
-//   celula->ant = -1;
-//   celula->prox = -1;
-//   celula->processo = processo;
-// }
-// Inicializa uma lista de processos
 void inicializa_celula_nula(Celula *celula, int index)
 {
   celula->prox = index + 1;
