@@ -5,6 +5,11 @@
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
 1. [Tipos abstratos]('#tipos-abstratos')
+  1. [Processo]('#listas')
+  1. [Cursor]
+  1. [Celula]
+  1. [Lista]
+
 1. [Como compilar a documentação](#compilando-a-documentacao)
 
 ---
