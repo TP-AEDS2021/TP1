@@ -14,7 +14,7 @@
 
 ---
 
-## Módulos <span id="#modules"></span>
+## Módulos <a name="#modules"></a>
 
 ---
 
@@ -28,7 +28,7 @@
 
 ---
 
-## Comando para compilar o projeto <compilando-o-projeto>
+## Comando para compilar o projeto <a name="compilando-o-projeto"></a>
 
 ```bash
     make
