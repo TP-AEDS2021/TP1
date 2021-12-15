@@ -7,8 +7,8 @@
 typedef struct Tprocesso
 {
     int PID; // identificador do processo
-    int prioridade;
-    struct tm* horario_criacao;
+    int prioridade; //prioridade do processo
+    struct tm* horario_criacao; // horario de criacao do processo
 } Processo;
 
 //funcao para inicializar o processo
