@@ -2,12 +2,42 @@
 
 ## Introdução
 
-1. [Tipos abstratos]('#tipos-abstratos')
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
+1. [Tipos abstratos]('#tipos-abstratos')
 1. [Como compilar a documentação](#compilando-a-documentacao)
 
 ---
+
+## Módulos <modules>
+
+---
+
+### UTILS
+
+| Função     | Tipo     | Argumentos | Descrição                                                 |
+| :--------- | :------- | :--------: | :-------------------------------------------------------- |
+| `menu()`   | `void`   |            | Imprime na saída padrão as opções de interação do sistema |
+| `cls()`    | `void`   |            | Limpa a saida padrão                                      |
+| `pid(int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
+
+---
+
+## Comando para compilar o projeto <compilando-o-projeto>
+
+```bash
+    make
+```
+
+### Exemplo de compilação
+
+```bash
+    make
+    make clean
+    make all
+```
+
+<div style="page-break-before:always">
 
 ## Tipos Abstratos <tipos-abstratos>
 
@@ -15,11 +45,11 @@
 
 - **Tipo**
 
-  | Campo             | Tipo         | Descrição                                                                                                                          |
-  | ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-  | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ) que é um inteiro positivo gerado aleatoriamente. Usado para ordenar os processos |
-  | `prioridade`      | `int`        | A prioridade do processo. O valor deve ser um inteiro entre 0 e 5. (Gerado aleatoriamente na criação do processo).                 |
-  | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                                                            |
+  | Campo             | Tipo         | Descrição                                                                                  |
+  | ----------------- | ------------ | ------------------------------------------------------------------------------------------ |
+  | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
+  | `prioridade`      | `int`        | A prioridade do processo ( `de 1 a 5` ) .(`Gerado aleatoriamente na criação do processo`). |
+  | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                    |
 
   ```C
   typedef struct Tprocesso
@@ -36,23 +66,21 @@
   | Função                | Tipo         | Argumentos                 | Descrição                                                                     |
   | --------------------- | ------------ | -------------------------- | ----------------------------------------------------------------------------- |
   | `inicializa_processo` | `void`       | `(Processo* )`             | Inicializa o processo com os valores de PID, prioridade e horario de criacao. |
-  | `imprime_processo`    | `void`       | `(Processo)`               | funcao para imprimir o processo, recebe um processo e imprime seus valores.   |
-  | `get_PID`             | `int`        | `(Processo*)`              | Retorna o valor do campo PID de um processo.                                  |
-  | `set_PID`             | `void`       | `(Processo* , int)`        | Define o valor do campo PID de um processo.                                   |
-  | `get_prioridade`      | `int`        | `(Processo*)`              | Retorna o valor do campo prioridade de um processo.                           |
-  | `set_prioridade`      | `void`       | `(Processo* , int)`        | Define o valor do campo prioridade de um processo.                            |
-  | `get_horario_criacao` | `struct tm*` | `(Processo*)`              | Retorna o valor do campo horario_criacao de um processo.                      |
-  | `set_horario_criacao` | `void`       | `(Processo* , struct tm*)` | Define o valor do campo horario_criacao de um processo.                       |
+  | `imprime_processo`    | `void`       | `(Processo)`               | imprime os campos do processo.                                                |
+  | `get_PID`             | `int`        | `(Processo*)`              | Retorna o valor do campo PID.                                                 |
+  | `set_PID`             | `void`       | `(Processo* , int)`        | Define o valor do campo PID.                                                  |
+  | `get_prioridade`      | `int`        | `(Processo*)`              | Retorna o valor do campo prioridade.                                          |
+  | `set_prioridade`      | `void`       | `(Processo* , int)`        | Define o valor do campo prioridade.                                           |
+  | `get_horario_criacao` | `struct tm*` | `(Processo*)`              | Retorna o valor do campo horario_criacao.                                     |
+  | `set_horario_criacao` | `void`       | `(Processo* , struct tm*)` | Define o valor do campo horario_criacao.                                      |
 
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
 </div>
 
 ## **Cursor**
 
 - Tipo
 
-  `Cursor é um tipo abstrato que representa um ponteiro para um elemento de uma lista.`
+  `Cursor é um tipo abstrato que representa um apontador (indice) para um elemento de uma lista.`
 
   ```C
   typedef int cursor;
@@ -62,7 +90,7 @@
 
 - Tipo
 
-      ```Celula é um tipo abstrato que representa um elemento de uma lista.```
+  `Celula é um tipo abstrato que representa um elemento de uma lista.`
 
   | Campo      | tipo         | Descrição                                      |
   | ---------- | ------------ | ---------------------------------------------- |
@@ -80,14 +108,12 @@
 
   - **_Funções_**
 
-    | Função                   | Tipo   | Argumentos              | Descrição                                                                                                            |
-    | ------------------------ | ------ | ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
-    | `inicializa_celula_nula` | `void` | `(Celula* , int)`       | Inicializa a celula com o valor de `prox` passado como parametro e `ant` igual a -1.                                 |
-    | `inicializa_celula`      | `void` | `(Celula* , Processo*)` | Inicializa a celula com o valor de `prox` e `ant` igual ao valor passado, e o campo processo como o processo passado |
+    | Função                   | Tipo   | Argumentos              | Descrição                                                                                             |
+    | ------------------------ | ------ | ----------------------- | ----------------------------------------------------------------------------------------------------- |
+    | `inicializa_celula_nula` | `void` | `(Celula* , int)`       | Inicializa a celula com o valor de `prox` passado como parametro, `ant` igual a -1 e processo `NULL`. |
+    | `inicializa_celula`      | `void` | `(Celula* , Processo*)` | Inicializa a celula com `prox` e `ant` como -1, e o campo processo passado como parametro.            |
 
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
-</div>
+<div style="page-break-before:always">
 
 ## **Lista**
 
@@ -112,41 +138,14 @@
   } Lista;
   ```
 
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
-</div>
+- **Funções**
 
-## Módulos <modules>
-
----
-
-### UTILS
-
-| Função     | Tipo     | Argumentos | Descrição                                                 |
-| :--------- | :------- | :--------: | :-------------------------------------------------------- |
-| `menu()`   | `void`   |            | Imprime na saída padrão as opções de interação do sistema |
-| `cls()`    | `void`   |            | Limpa a saida padrão                                      |
-| `pid(int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
+  | Função | Tipo | Argumento | Descrição | 
+  | ------- | ---- | --------- | --------- |
 
 ---
 
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
 </div>
-
-## Comando para compilar o projeto <compilando-o-projeto>
-
-```bash
-    make
-```
-
-### Exemplo de compilação
-
-```bash
-    make
-    make clean
-    make all
-```
 
 ## Comandos principais
 
@@ -199,10 +198,6 @@
 ```
 
 ---
-
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
-</div>
 
 ## Compilar a documentação <compilando-a-documentacao>
 
