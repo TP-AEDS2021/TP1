@@ -4,7 +4,7 @@
 
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
-1. [Tipos abstratos]('#tipos-abstratos')
+1. [Tipos abstratos]('#tipos')
 
    - [Processo]('#processo')
    - [Cursor](#cursor)
@@ -37,7 +37,7 @@
 
 <div style="page-break-before:always">
 
-## Tipos abstratos <a name="tipos-abstratos"></a>
+## Tipos abstratos <a name="tipos"></a>
 
 ## **Processo** <a name="processo"></a>
 
