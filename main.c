@@ -17,15 +17,16 @@ int main()
   FILE *file;
   char *filename, op;
   Lista *lista_processos;
-  
-  inicializa_lista(lista_processos, 4);
 
-  for (int i = 0; i < 10; i++){
-    Processo p;
+  lista_processos = inicializa_lista(lista_processos, 10 );
+  int pids[5] = { 2, 3, 4, 1, 6};
+  for (int i = 0; i < 5; i++){
+    Processo *p;
     Celula *celula;
-    inicializa_processo(&p);
-    inicializa_celula(celula, &p);
-    adiciona_celula(lista_processos, celula);
+    p = inicializa_processo(p);
+    celula = inicializa_celula(celula, p);
+    p->PID = pids[i];
+    adiciona_celula2(lista_processos, celula, 10);
   }
     
 

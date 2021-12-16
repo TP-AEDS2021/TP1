@@ -3,17 +3,33 @@
 #include <time.h>
 #include "processo.h"
 #include "../../utils/utils.c"
+#include <inttypes.h>
 
-
+unsigned long long rand_uint64_slow(void)
+{
+  unsigned long long r = 0;
+  for (int i = 0; i < 64; i++)
+  {
+    r = r * 2 + rand() % 2;
+  }
+  return r;
+}
 
 // funcao para inicializar o processo
-void inicializa_processo(Processo *processo)
+Processo* inicializa_processo(Processo *processo)
 {
+  processo = (Processo *)malloc(sizeof(Processo));
   srand(time(NULL));
-  set_PID(processo, rand()  );
+  unsigned long long pid = rand_uint64_slow();
+  if(pid <= 0)
+  {
+    pid = pid * -1;
+  }
+  set_PID(processo, pid );
   srand(time(NULL));
   set_prioridade(processo, (rand() % 5) + 1);
   set_horario_criacao(processo, currentTime());
+  return processo;
 }
 
 // funcao para imprimir o processo
@@ -25,13 +41,13 @@ void imprime_processo(Processo processo)
 }
 
 // retorna o PID do processo
-int get_PID(Processo *processo)
+long long int get_PID(Processo *processo)
 {
   return processo->PID;
 }
 
 // define o PID do processo
-void set_PID(Processo *processo, int PID)
+void set_PID(Processo *processo, unsigned long long PID)
 {
   processo->PID = PID;
 }

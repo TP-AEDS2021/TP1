@@ -9,26 +9,42 @@ void inicializa_celula_nula(Celula *celula, int index)
   celula->ant = -1;
 }
 
-  void inicializa_lista(Lista *lista, int tamanho)
-  {
-    lista = (Lista *)malloc(sizeof(Lista));
-    lista->primeiro = -1;                                         // incice - cursor
-    lista->ultimo = -1;                                           // indice - cursor
-    lista->numCelOcupadas = 0;                                    // numero de celulas ocupadas
-    lista->primeira_disponivel = 0;                               // indice da primeira celula disponivel
-    lista->plista = (Celula *)malloc(tamanho * (sizeof(Celula))); // aloca o lista de celulas
-    if (lista->plista == NULL)
-    {
-      printf("Erro ao inicializar a lista");
-      exit(1);
-    }
-  }
-
-void iniciliza_celula(Celula *celula, Processo *processo)
+Celula *inicializa_celula(Celula *celula, Processo *processo)
 {
   celula = (Celula *)malloc(sizeof(Celula));
   celula->ant = celula->prox = -1;
   celula->processo = processo;
+  return celula;
+}
+Lista *inicializa_lista(Lista *lista, int tamanho)
+{
+  lista = (Lista *)malloc(sizeof(Lista));
+  lista->tam = tamanho;
+  lista->primeiro = -1;                                         // incice - cursor
+  lista->ultimo = -1;                                           // indice - cursor
+  lista->numCelOcupadas = 0;                                    // numero de celulas ocupadas
+  lista->primeira_disponivel = 0;                               // indice da primeira celula disponivel
+  lista->plista = (Celula *)malloc(tamanho * (sizeof(Celula))); // aloca o lista de celulas
+  for (int i = 0; i < tamanho; i++)
+  {
+    lista->plista[i].ant = -1;
+    lista->plista[i].processo = NULL;
+    if (i == tamanho - 1)
+    {
+      lista->plista[i].prox = -1;
+    }
+    else
+    {
+      lista->plista[i].prox = i + 1;
+    }
+  }
+
+  if (lista->plista == NULL)
+  {
+    printf("Erro ao inicializar a lista");
+    exit(1);
+  }
+  return lista;
 }
 
 // Adiciona uma celula na lista
@@ -42,22 +58,24 @@ void adiciona_celula(Lista *lista, Celula *celula)
     lista->numCelOcupadas++;
     lista->primeira_disponivel = 1;
   }
-  if(lista->numCelOcupadas == 1){
-    if(celula->processo->PID >= lista->plista[lista->primeiro].processo->PID){
+  if (lista->numCelOcupadas == 1)
+  {
+    if (celula->processo->PID >= lista->plista[lista->primeiro].processo->PID)
+    {
       celula->ant = lista->primeiro;
       celula->prox = -1;
       lista->plista[lista->primeira_disponivel] = *celula;
       lista->ultimo = 1;
       lista->numCelOcupadas++;
     }
-    else{
-
+    else
+    {
     }
   }
   else
   {
-    int tam = sizeof(lista->plista) / sizeof(Celula);
-    if(lista->numCelOcupadas >= tam)
+    
+    if (lista->numCelOcupadas >= lista->tam)
     {
       printf("Lista cheia");
       return;
@@ -85,7 +103,84 @@ void adiciona_celula(Lista *lista, Celula *celula)
   }
 }
 
+int buscaDisp(Lista *lista){
+  int i = -1;
+  for(int j = 0; j < lista->tam; j++){
+    if(lista->plista[j].processo == NULL){
+      i = j;
+      break;
+    }
+  }
+  return i;
 
+
+}
+
+void adiciona_celula2(Lista *lista, Celula *celula, int tam)
+{
+  if (lista->numCelOcupadas == 0)
+  {
+    celula->ant = celula->prox = -1;
+    lista->primeiro = lista->ultimo = 0;
+    lista->plista[0] = *celula;
+    lista->numCelOcupadas++;
+    lista->primeira_disponivel = 1;
+    return;
+  }
+  else
+  {
+
+    if (lista->numCelOcupadas >= tam)
+    {
+      printf("Lista cheia");
+      return;
+    }
+    cursor index = lista->primeiro;
+    //Insere no inicio da lista
+    if(celula->processo->PID <= lista->plista[index].processo->PID ){
+      cursor indice_primeiro = lista->primeiro;
+      cursor aux = lista->plista[lista->primeira_disponivel].prox;
+      celula->prox = indice_primeiro;
+      celula->ant = -1;
+      lista->plista[lista->primeiro].ant = lista->primeira_disponivel;
+      if(lista->plista[lista->primeiro].prox == -1){
+        
+      }
+      lista->primeiro = lista->primeira_disponivel;
+      lista->plista[lista->primeira_disponivel] = *celula;
+      lista->primeira_disponivel = aux;
+      lista->numCelOcupadas++;
+      return;
+    }
+    //insere no meio da lista
+    while (lista->plista[index].processo->PID <= celula->processo->PID)
+    {
+      if ((lista->plista[index].prox == -1) && (lista->numCelOcupadas == 1))
+      {
+        int index_primeiro = lista->primeiro;
+        celula->ant = index_primeiro;
+        celula->prox = -1;
+        lista->plista[lista->primeiro].prox = lista->primeira_disponivel;
+        lista->ultimo = lista->primeira_disponivel;
+        lista->plista[lista->primeira_disponivel] = *celula;
+        int disp = buscaDisp(lista);
+        if(disp != -1){
+          printf("lista cheia");
+          return;
+        }
+        lista->primeira_disponivel = disp;
+        break;
+      }
+      else
+      {
+        index++;
+        continue;
+      }
+    }
+    printf("%d\n", index);
+    return;
+  }
+}
 
 void remove_celula(Lista *lista, int indice)
 {
