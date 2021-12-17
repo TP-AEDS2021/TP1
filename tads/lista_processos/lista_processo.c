@@ -74,6 +74,7 @@ void adiciona_celula(Lista *lista, Celula *celula)
         lista->plista[lista->primeira_disponivel] = *celula;
         lista->plista[lista->primeiro].ant = aux2;
         lista->primeiro = lista->primeira_disponivel;
+        // Concertar celula disponivel
         if(lista->numCelOcupadas == lista->tam){
           printf("Lista cheia");
           
