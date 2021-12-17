@@ -20,15 +20,14 @@ typedef struct Tlista {
   int tam;
 } Lista;
 
-void adiciona_celula2(Lista *lista, Celula *celula, int tam); //teste
+//void adiciona_celula2(Lista *lista, Celula *celula, int tam); //teste
 
 Celula *inicializa_celula(Celula *, Processo *);
 void inicializa_celula_nula(Celula *, int);
 Lista * inicializa_lista(Lista *lista, int tamanho);
-void adiciona_celula(Lista *lista, Celula *celula);
+void adiciona_celula(Lista *lista, Celula *celula, int tam);
 void remove_celula(Lista *lista, int indice);
 void remove_primeiro(Lista *lista);
-void remove_ultimo(Lista *lista);
 void imprime_lista(Lista *lista);
 
 #endif // LISTA_PROCESSO_H
