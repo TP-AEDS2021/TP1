@@ -5,6 +5,8 @@
 #include "../../utils/utils.c"
 #include <inttypes.h>
 
+
+
 unsigned long long rand_uint64_slow(void)
 {
   unsigned long long r = 0;
@@ -19,15 +21,13 @@ unsigned long long rand_uint64_slow(void)
 Processo* inicializa_processo(Processo *processo)
 {
   processo = (Processo *)malloc(sizeof(Processo));
-  srand(time(NULL));
+  
   unsigned long long pid = rand_uint64_slow();
   if(pid <= 0)
   {
     pid = pid * -1;
   }
-  set_PID(processo, pid );
-  srand(time(NULL));
-  srand(time(NULL));
+  set_PID(processo, pid );  
   set_prioridade(processo, (rand() % 5) + 1);
   printf("prioridade: %d\n", get_prioridade(processo));
   set_horario_criacao(processo, currentTime());

@@ -19,7 +19,8 @@ int main()
   Lista *lista_processos;
 
   lista_processos = inicializa_lista(lista_processos, 8);
-  
+  srand(time(NULL));
+
   for (int i = 0; i < 8; i++){
     Processo *p;
     Celula *celula;
