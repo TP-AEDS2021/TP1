@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "./lista_processo.h"
 #include "../processo/processo.h"
+#include <string.h>
 
 void inicializa_celula_nula(Celula *celula, int index)
 {
@@ -110,6 +111,14 @@ void adiciona_celula(Lista *lista, Celula *celula)
   }
 }
 
+void remove(Lista *lista){
+  cursor index = lista->primeiro;
+  lista->plista[lista->plista[index].prox].ant = -1;
+  lista->primeiro = lista->plista[index].prox;
+  
+
+}
+
 void remove_primeiro(Lista *lista)
 {
   cursor aux = lista->primeira_disponivel;
@@ -120,20 +129,23 @@ void remove_primeiro(Lista *lista)
     if (lista->primeiro < aux)
     {
       lista->plista[aux2].prox = lista->primeiro;
+      lista->plista[lista->primeiro].prox = aux2;
       break;
     }
   }
   cursor aux3 = lista->plista[lista->primeiro].prox;
-  if (lista->plista[lista->primeiro].prox != -1)
-  {
-    lista->plista[lista->plista[lista->primeiro].prox].ant = -1;
-  }
+
   if (lista->primeiro < lista->primeira_disponivel)
   {
     lista->primeira_disponivel = lista->primeiro;
   }
-  lista->primeiro = lista->plista[lista->primeiro].prox;
-  aux3 = aux;
+  if (lista->plista[lista->primeiro].prox != -1)
+  {
+    lista->plista[lista->plista[lista->primeiro].prox].ant = -1;
+  }
+
+  lista->primeiro = aux3;
+
   lista->numCelOcupadas--;
   if (lista->numCelOcupadas == 0)
   {
@@ -148,10 +160,23 @@ void imprime_lista(Lista *lista)
   Celula aux = lista->plista[lista->primeiro];
   while (aux.prox != -1)
   {
-    printf("\nPID: %llu - prioridade: %d\n", aux.processo->PID, aux.processo->prioridade);
+    printf("PID: %llu ", aux.processo->PID);
     aux = lista->plista[aux.prox];
   }
   return;
+}
+
+void get_lista(Lista* lista, char *string){
+ 
+  char aux[100] = "";
+  Celula aux2 = lista->plista[lista->primeiro];
+  while (aux2.prox != -1)
+  {
+    sprintf(aux, "%llu >", aux2.processo->PID);
+    strcat(string, aux);
+    aux2 = lista->plista[aux2.prox];
+  }
+  
 }
 
 int get_celulas_ocupadas(Lista *lista)

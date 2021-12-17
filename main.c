@@ -17,21 +17,28 @@ int main()
   FILE *file;
   char *filename, op;
   Lista *lista_processos;
-
+  char * string;
   lista_processos = inicializa_lista(lista_processos, 8);
   srand(time(NULL));
-
-  for (int i = 0; i < 8; i++){
+  for (int i = 0; i < 8; i++)
+  {
     Processo *p;
     Celula *celula;
     p = inicializa_processo(p);
     celula = inicializa_celula(celula, p);
-    
+
     adiciona_celula(lista_processos, celula);
   }
-    
-  imprime_lista(lista_processos);
 
+  imprime_lista(lista_processos);
+  
+  for (int i = 0; i < 4; i++)
+  {
+    remove_primeiro(lista_processos);
+  }
+  printf("\n");
+  imprime_lista(lista_processos);
+  printf("fim\n");
   return 0;
 
   getchar();
