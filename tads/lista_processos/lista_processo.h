@@ -26,5 +26,7 @@ Lista * inicializa_lista(Lista *lista, int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_primeiro(Lista *lista);
 void imprime_lista(Lista *lista);
+void num_celulas_ocupadas(Lista *lista);
+int get_celulas_ocupadas(Lista *lista);
 
 #endif // LISTA_PROCESSO_H

@@ -153,3 +153,13 @@ void imprime_lista(Lista *lista)
   }
   return;
 }
+
+int get_celulas_ocupadas(Lista *lista)
+{
+  return lista->numCelOcupadas;
+}
+
+void numero_celuas_ocupadas(Lista *lista)
+{
+  printf("\nNumero de celulas ocupadas: %d\n", get_celulas_ocupadas(lista));
+}
