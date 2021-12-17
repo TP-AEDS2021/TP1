@@ -20,8 +20,6 @@ typedef struct Tlista {
   int tam;
 } Lista;
 
-//void adiciona_celula2(Lista *lista, Celula *celula, int tam); //teste
-
 Celula *inicializa_celula(Celula *, Processo *);
 void inicializa_celula_nula(Celula *, int);
 Lista * inicializa_lista(Lista *lista, int tamanho);
