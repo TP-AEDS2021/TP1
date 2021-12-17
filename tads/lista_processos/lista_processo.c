@@ -48,34 +48,40 @@ Lista *inicializa_lista(Lista *lista, int tamanho)
 }
 
 // Adiciona uma celula na lista
-void adiciona_celula(Lista *lista, Celula *celula, int tam)
+void adiciona_celula(Lista *lista, Celula *celula)
 {
-  if (lista->numCelOcupadas == tam)
+  if (lista->numCelOcupadas == lista->tam)
   {
     printf("\nERRO - Lista cheia");
   }
   else
   {
+    cursor aux = lista->plista[lista->primeira_disponivel].prox;
     if (lista->numCelOcupadas == 0)
     {
       lista->primeiro = lista->ultimo = lista->primeira_disponivel;
       celula->ant = celula->prox = -1;
       lista->plista[lista->primeira_disponivel] = *celula;
-      lista->primeira_disponivel = lista->plista[lista->primeira_disponivel].prox;
+      lista->primeira_disponivel = aux;
     }
     else
     {
-      cursor aux = lista->plista[lista->primeira_disponivel].prox;
-      if (celula->processo->PID < lista->plista[lista->primeiro].processo->PID)
+      if (celula->processo->PID <= lista->plista[lista->primeiro].processo->PID)
       {
-        celula->ant = -1;
+        cursor aux2 = lista->primeira_disponivel;
+        celula->ant = -1; 
         celula->prox = lista->primeiro;
         lista->plista[lista->primeira_disponivel] = *celula;
-        lista->plista[lista->primeiro].ant = lista->primeira_disponivel;
+        lista->plista[lista->primeiro].ant = aux2;
         lista->primeiro = lista->primeira_disponivel;
-        lista->primeira_disponivel = aux;
+        if(lista->numCelOcupadas == lista->tam){
+          printf("Lista cheia");
+          
+          return;
+        }
+        lista->primeira_disponivel = aux2;
       }
-      else if (celula->processo->PID > lista->plista[lista->ultimo].processo->PID)
+      else if (celula->processo->PID >= lista->plista[lista->ultimo].processo->PID)
       {
         celula->prox = -1;
         celula->ant = lista->ultimo;
@@ -87,7 +93,7 @@ void adiciona_celula(Lista *lista, Celula *celula, int tam)
       else
       {
         cursor index = lista->primeiro;
-        while (lista->plista[index].processo->PID < celula->processo->PID)
+        while (lista->plista[index].processo->PID <= celula->processo->PID)
         {
           if(lista->plista[lista->plista[index].prox].processo->PID > celula->processo->PID)
           {
@@ -102,49 +108,6 @@ void adiciona_celula(Lista *lista, Celula *celula, int tam)
         }
       }
     }
-    /*if (lista->numCelOcupadas == 1)
-    {
-      if (celula->processo->PID >= lista->plista[lista->primeiro].processo->PID)
-      {
-        celula->ant = lista->primeiro;
-        celula->prox = -1;
-        lista->plista[lista->primeira_disponivel] = *celula;
-        lista->ultimo = 1;
-        lista->numCelOcupadas++;
-      }
-      else
-      {
-      }
-    }
-    else
-    {
-      
-      if (lista->numCelOcupadas >= lista->tam)
-      {
-        printf("Lista cheia");
-        return;
-      }
-      cursor index = lista->primeiro;
-      while (lista->plista[index].prox != -1)
-      {
-        if (lista->plista[index].processo->PID <= celula->processo->PID)
-        {
-          index++;
-          continue;
-        }
-        else
-        {
-          break;
-        }
-      }
-      cursor aux1 = index;                     // 0
-      cursor aux2 = lista->plista[index].prox; // 2
-      lista->plista[lista->plista[index].prox].ant = lista->primeira_disponivel;
-      lista->plista[index].prox = lista->primeira_disponivel;
-      celula->prox = aux2;
-      celula->ant = aux1;
-      lista->numCelOcupadas++;
-    }*/
     lista->numCelOcupadas++;
   }
 }
@@ -228,7 +191,7 @@ void adiciona_celula2(Lista *lista, Celula *celula, int tam)
   }
 }*/
 
-void remove_primeiro(Lista *lista, int indice)
+void remove_primeiro(Lista *lista)
 {
   cursor aux = lista->primeira_disponivel;
   while (lista->primeiro > aux)

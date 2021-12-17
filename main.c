@@ -19,14 +19,17 @@ int main()
   Lista *lista_processos;
 
   lista_processos = inicializa_lista(lista_processos, 10 );
-  int pids[5] = { 2, 3, 4, 1, 6};
-  for (int i = 0; i < 5; i++){
+  int pids[8] = { 2, 3, 4, 1, 5, 6, 4, 1};
+  for (int i = 0; i < 8; i++){
     Processo *p;
     Celula *celula;
     p = inicializa_processo(p);
     celula = inicializa_celula(celula, p);
     p->PID = pids[i];
-    adiciona_celula2(lista_processos, celula, 10);
+    if(pids[i]==6){
+      printf("ok");
+    }
+    adiciona_celula(lista_processos, celula);
   }
     
 
