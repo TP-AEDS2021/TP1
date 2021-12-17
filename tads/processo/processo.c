@@ -27,16 +27,17 @@ Processo* inicializa_processo(Processo *processo)
   }
   set_PID(processo, pid );
   srand(time(NULL));
+  srand(time(NULL));
   set_prioridade(processo, (rand() % 5) + 1);
+  printf("prioridade: %d\n", get_prioridade(processo));
   set_horario_criacao(processo, currentTime());
   return processo;
 }
 
 // funcao para imprimir o processo
-void imprime_processo(Processo processo)
+void imprime_processo(Processo* processo)
 {
-  printf("|\t%d\t|\t%d\t|\t %d-%d-%d \t|\n", processo.PID, processo.prioridade, processo.horario_criacao->tm_hour, processo.horario_criacao->tm_min, processo.horario_criacao->tm_sec);
-  printf("OK");
+  printf("|\t%lu\t|\t%d\t|\t %d-%d-%d \t|\n", processo->PID, processo->prioridade, processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
   return;
 }
 

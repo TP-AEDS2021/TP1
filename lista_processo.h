@@ -222,31 +222,31 @@ size_t wcsftime (wchar_t *, size_t, const wchar_t *, const struct tm *);
 # 7 "d:\\facul\\aeds\\tp_1\\tads\\processo\\processo.h"
 typedef struct Tprocesso
 {
-    unsigned long long PID;
-    int prioridade;
-    struct tm* horario_criacao;
+  unsigned long long PID;
+  int prioridade;
+  struct tm *horario_criacao;
 } Processo;
 
 
-Processo* inicializa_processo(Processo*);
+Processo *inicializa_processo(Processo *);
 
 
-void imprime_processo(Processo);
+void imprime_processo(Processo *);
 
 
-long long int get_PID(Processo*);
+long long int get_PID(Processo *);
 
-void set_PID(Processo*, unsigned long long);
+void set_PID(Processo *, unsigned long long);
 
-int get_prioridade(Processo*);
+int get_prioridade(Processo *);
 
-void set_prioridade(Processo*, int);
+void set_prioridade(Processo *, int);
 
-struct tm* get_horario_criacao(Processo*);
+struct tm *get_horario_criacao(Processo *);
 
-void set_horario_criacao(Processo*, struct tm*);
+void set_horario_criacao(Processo *, struct tm *);
 
-char* str_horario(struct tm*);
+char *str_horario(struct tm *);
 # 5 "./tads/lista_processos/lista_processo.h" 2
 
 typedef int cursor;

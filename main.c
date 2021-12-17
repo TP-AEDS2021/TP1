@@ -18,21 +18,18 @@ int main()
   char *filename, op;
   Lista *lista_processos;
 
-  lista_processos = inicializa_lista(lista_processos, 10 );
-  int pids[8] = { 2, 3, 4, 1, 5, 6, 4, 1};
+  lista_processos = inicializa_lista(lista_processos, 8);
+  
   for (int i = 0; i < 8; i++){
     Processo *p;
     Celula *celula;
     p = inicializa_processo(p);
     celula = inicializa_celula(celula, p);
-    p->PID = pids[i];
-    if(pids[i]==6){
-      printf("ok");
-    }
+    
     adiciona_celula(lista_processos, celula);
   }
     
-
+  imprime_lista(lista_processos);
 
   return 0;
 

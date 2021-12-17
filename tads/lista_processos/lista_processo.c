@@ -53,12 +53,14 @@ void adiciona_celula(Lista *lista, Celula *celula)
   if (lista->numCelOcupadas == lista->tam)
   {
     printf("\nERRO - Lista cheia");
+    return;
   }
   else
   {
     cursor aux = lista->plista[lista->primeira_disponivel].prox;
     if (lista->numCelOcupadas == 0)
     {
+      
       lista->primeiro = lista->ultimo = lista->primeira_disponivel;
       celula->ant = celula->prox = -1;
       lista->plista[lista->primeira_disponivel] = *celula;
@@ -68,19 +70,14 @@ void adiciona_celula(Lista *lista, Celula *celula)
     {
       if (celula->processo->PID <= lista->plista[lista->primeiro].processo->PID)
       {
-        cursor aux2 = lista->primeira_disponivel;
         celula->ant = -1; 
         celula->prox = lista->primeiro;
         lista->plista[lista->primeira_disponivel] = *celula;
-        lista->plista[lista->primeiro].ant = aux2;
+        lista->plista[lista->primeiro].ant = lista->primeira_disponivel;
         lista->primeiro = lista->primeira_disponivel;
-        // Concertar celula disponivel
-        if(lista->numCelOcupadas == lista->tam){
-          printf("Lista cheia");
-          
-          return;
-        }
-        lista->primeira_disponivel = aux2;
+        // TODO:Concertar celula disponivel
+        
+        lista->primeira_disponivel = aux;
       }
       else if (celula->processo->PID >= lista->plista[lista->ultimo].processo->PID)
       {
@@ -94,7 +91,7 @@ void adiciona_celula(Lista *lista, Celula *celula)
       else
       {
         cursor index = lista->primeiro;
-        while (lista->plista[index].processo->PID <= celula->processo->PID)
+        while (lista->plista[index].processo->PID < celula->processo->PID)
         {
           if(lista->plista[lista->plista[index].prox].processo->PID > celula->processo->PID)
           {
@@ -112,85 +109,6 @@ void adiciona_celula(Lista *lista, Celula *celula)
     lista->numCelOcupadas++;
   }
 }
-
-/*int buscaDisp(Lista *lista){
-  int i = -1;
-  for(int j = 0; j < lista->tam; j++){
-    if(lista->plista[j].processo == NULL){
-      i = j;
-      break;
-    }
-  }
-  return i;
-
-
-}
-
-void adiciona_celula2(Lista *lista, Celula *celula, int tam)
-{
-  if (lista->numCelOcupadas == 0)
-  {
-    celula->ant = celula->prox = -1;
-    lista->primeiro = lista->ultimo = 0;
-    lista->plista[0] = *celula;
-    lista->numCelOcupadas++;
-    lista->primeira_disponivel = 1;
-    return;
-  }
-  else
-  {
-
-    if (lista->numCelOcupadas >= tam)
-    {
-      printf("Lista cheia");
-      return;
-    }
-    cursor index = lista->primeiro;
-    //Insere no inicio da lista
-    if(celula->processo->PID <= lista->plista[index].processo->PID ){
-      cursor indice_primeiro = lista->primeiro;
-      cursor aux = lista->plista[lista->primeira_disponivel].prox;
-      celula->prox = indice_primeiro;
-      celula->ant = -1;
-      lista->plista[lista->primeiro].ant = lista->primeira_disponivel;
-      if(lista->plista[lista->primeiro].prox == -1){
-        
-      }
-      lista->primeiro = lista->primeira_disponivel;
-      lista->plista[lista->primeira_disponivel] = *celula;
-      lista->primeira_disponivel = aux;
-      lista->numCelOcupadas++;
-      return;
-    }
-    //insere no meio da lista
-    while (lista->plista[index].processo->PID <= celula->processo->PID)
-    {
-      if ((lista->plista[index].prox == -1) && (lista->numCelOcupadas == 1))
-      {
-        int index_primeiro = lista->primeiro;
-        celula->ant = index_primeiro;
-        celula->prox = -1;
-        lista->plista[lista->primeiro].prox = lista->primeira_disponivel;
-        lista->ultimo = lista->primeira_disponivel;
-        lista->plista[lista->primeira_disponivel] = *celula;
-        int disp = buscaDisp(lista);
-        if(disp != -1){
-          printf("lista cheia");
-          return;
-        }
-        lista->primeira_disponivel = disp;
-        break;
-      }
-      else
-      {
-        index++;
-        continue;
-      }
-    }
-    printf("%d\n", index);
-    return;
-  }
-}*/
 
 void remove_primeiro(Lista *lista)
 {
@@ -224,4 +142,14 @@ void remove_primeiro(Lista *lista)
 }
 void imprime_lista(Lista *lista)
 {
+
+  // imprime a lista de processos
+  printf("\nLista de processos:\n");
+  Celula aux = lista->plista[lista->primeiro];
+  while (aux.prox != -1)
+  {
+    printf("\nPID: %llu - prioridade: %d\n", aux.processo->PID, aux.processo->prioridade);
+    aux = lista->plista[aux.prox];
+  }
+  return;
 }
