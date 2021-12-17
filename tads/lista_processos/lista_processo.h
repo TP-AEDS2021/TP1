@@ -1,28 +1,32 @@
 #ifndef LISTA_PROCESSO_H
 #define LISTA_PROCESSO_H
 
-#include "./tads/processo/processo.h"
+#include "../processo/processo.h"
+
+typedef int cursor;
 
 typedef struct Tcelula {
-  struct Tprocesso *processo;
-  int ant;
-  int prox;
+  Processo *processo;
+  cursor ant;
+  cursor prox;
 } Celula;
 
 typedef struct Tlista {
-  int primeiro;
-  int celula_disponivel;
-  int ultimo;
+  cursor primeiro;
+  cursor primeira_disponivel;
+  cursor ultimo;
   int numCelOcupadas;
-  Celula *lista;
+  Celula *plista;
+  int tam;
 } Lista;
 
-void inicializa_celula(Celula *celula, struct Tprocesso *processo);
-void inicializa_lista(Lista *lista, int tamanho);
+Celula *inicializa_celula(Celula *, Processo *);
+void inicializa_celula_nula(Celula *, int);
+Lista * inicializa_lista(Lista *lista, int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
-void remove_celula(Lista *lista, int indice);
 void remove_primeiro(Lista *lista);
-void remove_ultimo(Lista *lista);
 void imprime_lista(Lista *lista);
+void num_celulas_ocupadas(Lista *lista);
+int get_celulas_ocupadas(Lista *lista);
 
 #endif // LISTA_PROCESSO_H
