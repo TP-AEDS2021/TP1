@@ -192,7 +192,7 @@ void imprime_lista(Lista *lista)
   printf("\nLista de processos:\n");
   Celula aux = lista->plista[lista->primeiro];
   if(lista->numCelOcupadas == 1){
-    printf("%llu\n", aux.processo->PID);
+    imprime_processo(aux.processo);//printf("%llu\n", aux.processo->PID);
     return;
   }
   while (aux.prox != -1)
@@ -200,6 +200,7 @@ void imprime_lista(Lista *lista)
     imprime_processo(aux.processo);
     aux = lista->plista[aux.prox];
   }
+  imprime_processo(lista->plista[lista->ultimo].processo);
   return;
 }
 
