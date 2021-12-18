@@ -22,6 +22,16 @@ void menu()
   puts("2 - Entradas por teclado");
 }
 
+void menu_teclado()
+{
+  puts("Opcoes:");
+  puts("0 - Insercao de processos");
+  puts("1 - Remocao de processos");
+  puts("2 - Ver quantidade de processos");
+  puts("3 - Imprimir lista de processos");
+  puts("4 - Sair");
+}
+
 char *pid()
 {
   int length = 20;

@@ -69,7 +69,7 @@ int main()
       while (getline(&linha, &len, file) > 0)
       {
         printf("%s", linha);
-        if(linha == 0){ //primeira linha7
+        if(linha == 0){ //primeira linha
         sscanf(linha, "%ld", &tamanho_do_vetor);
         }
         else if(linha == 1){ //segunda linha
@@ -92,6 +92,87 @@ int main()
       getchar();
       fclose(file);
       break;
+    case 2:
+      // todo: implementar multiplataforma
+      char opt;
+      long int tam;
+      printf("Digite o tamanho da lista: ");
+      int resultado = scanf("%ld", &tam);
+      while (resultado != 1)
+      {
+        printf("Entrada invalida. Digite o tamanho da lista: \n");
+        resultado = scanf("%ld", &tam);
+      }
+      while (tam < 1 || tam > 999999)
+      {
+        printf("Tamanho invalido. Digite o tamanho da lista: \n");
+        scanf("%ld", &tam);
+      }
+      lista_processos = inicializa_lista(lista_processos, tam);
+      do
+      {
+        menu_teclado();
+        fflush(stdin);
+        opt = getchar();
+        switch (opt)
+        {
+        case '0':
+          int quantidade;
+          printf("Digite o numero de processos a serem inseridos: ");
+          resultado = scanf("%d", &quantidade);
+          while (resultado != 1)
+          {
+            printf("Entrada invalida. Digite o numero de processos a serem inseridos: \n");
+            resultado = scanf("%d", &quantidade);
+          }
+          while (quantidade < 0)
+          {
+            printf("Numero de processos invalido. Digite o numero de processos a serem inseridos: \n");
+            scanf("%d", &quantidade);
+          }
+          for (int i = 0; i < quantidade; i++){
+            Processo *p;
+            Celula *celula;
+            p = inicializa_processo(p);
+            celula = inicializa_celula(celula, p);
+            adiciona_celula(lista_processos, celula);
+          }
+          break;
+        case '1':
+          int quantidade;
+          printf("Digite o numero de processos a serem removidos: ");
+          resultado = scanf("%d", &quantidade);
+          while (resultado != 1)
+          {
+            printf("Entrada invalida. Digite o numero de processos a serem removidos: \n");
+            resultado = scanf("%d", &quantidade);
+          }
+          while (quantidade < 0)
+          {
+            printf("Numero de processos invalido. Digite o numero de processos a serem removidos: \n");
+            scanf("%d", &quantidade);
+          }
+          for (int i = 0; i < quantidade; i++)
+          {
+            remove_primeiro(lista_processos);
+          }
+          break;
+        case '2':
+          num_celulas_ocupadas(lista_processos);
+          break;
+        case '3':
+          imprime_lista(lista_processos);
+          break;
+        case '4':
+          exit(0);
+          break;
+        default:
+          puts("Opcao invalida ( digite qualquer tecla )\n");
+          getchar();
+          break;
+        }  
+        break;
+      } while(opt != 'q');
     default:
       puts("Opcao invalida ( digite qualquer tecla )\n");
       getchar();
