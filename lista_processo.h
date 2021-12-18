@@ -246,6 +246,8 @@ struct tm *get_horario_criacao(Processo *);
 
 void set_horario_criacao(Processo *, struct tm *);
 
+void imprime_processo_arquivo(FILE *, Processo *);
+
 char *str_horario(struct tm *);
 # 5 "./tads/lista_processos/lista_processo.h" 2
 
@@ -263,12 +265,12 @@ typedef struct Tlista {
   cursor ultimo;
   int numCelOcupadas;
   Celula *plista;
-  int tam;
+  long int tam;
 } Lista;
 
 Celula *inicializa_celula(Celula *, Processo *);
 void inicializa_celula_nula(Celula *, int);
-Lista * inicializa_lista(Lista *lista, int tamanho);
+Lista * inicializa_lista(Lista *lista,long int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_primeiro(Lista *lista);
 void imprime_lista(Lista *lista);
