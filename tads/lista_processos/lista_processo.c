@@ -17,7 +17,7 @@ Celula *inicializa_celula(Celula *celula, Processo *processo)
   celula->processo = processo;
   return celula;
 }
-Lista *inicializa_lista(Lista *lista, int tamanho)
+Lista *inicializa_lista(Lista *lista, long int tamanho)
 {
   lista = (Lista *)malloc(sizeof(Lista));
   lista->tam = tamanho;
@@ -192,7 +192,7 @@ void imprime_lista(Lista *lista)
   printf("\nLista de processos:\n");
   Celula aux = lista->plista[lista->primeiro];
   if(lista->numCelOcupadas == 1){
-    printf("%d\n", aux.processo->PID);
+    printf("%llu\n", aux.processo->PID);
     return;
   }
   while (aux.prox != -1)
@@ -208,7 +208,7 @@ int get_celulas_ocupadas(Lista *lista)
   return lista->numCelOcupadas;
 }
 
-void numero_celuas_ocupadas(Lista *lista)
+void num_celulas_ocupadas(Lista *lista)
 {
   printf("\nNumero de celulas ocupadas: %d\n", get_celulas_ocupadas(lista));
 }
