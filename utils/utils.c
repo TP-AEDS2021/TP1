@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 
 #define cls() printf("\e[1;1H\e[2J");
 
@@ -12,6 +15,12 @@ struct tm* currentTime(){
   time(&rawtime);
   timeinfo = localtime(&rawtime);
   return timeinfo;
+}
+
+void gotoxy(int x, int y)
+{
+  COORD c = {x, y};
+  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
 void menu()

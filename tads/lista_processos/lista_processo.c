@@ -53,7 +53,6 @@ void adiciona_celula(Lista *lista, Celula *celula)
 {
   if (lista->numCelOcupadas == lista->tam)
   {
-    printf("\nERRO - Lista cheia");
     return;
   }
   else

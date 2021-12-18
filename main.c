@@ -62,15 +62,10 @@ int main()
       if (filename == NULL)
       {
         puts("Erro ao ler o arquivo\n pressione enter para continuar");
-#ifdef WIN32
-        getch();
-#else
-        getchar();
-#endif
+        _get();
         break;
       }
       file = fopen(filename, "r");
-
       if (file == NULL)
       {
         puts("Erro ao ler o arquivo\t (pressione enter para continuar)\n");
@@ -86,7 +81,6 @@ int main()
       char *linha = malloc(len);
       long int tamanho_do_vetor;
       int nlinha = 0;
-#pragma region leitura do arquivo
       while (getline(&linha, &len, file) > 0)
       {
         if (nlinha == 0)
@@ -97,78 +91,77 @@ int main()
         else if (nlinha == 1)
         { // segunda linha
           sscanf(linha, "%d", &num_testes);
-          printf("numero de testes: %d\n", num_testes);
+          printf("numero de operacoes: %d\n", num_testes);
         }
 
         if (nlinha > 1)
         {
           sscanf(linha, "%d %d", &tipo_da_operacao, &quantidade);
-          if (tipo_da_operacao == INSERE)
-          {
-            puts("inserindo");
-          }
-          else if (tipo_da_operacao == REMOVE)
-          {
-            puts("removendo");
-          }
-          else
-          {
-            puts("operacao invalida");
-          }
-          printf("%d itens\n", quantidade);
-
+          free(lista_processos->plista);
+          free(lista_processos);
           lista_processos = inicializa_lista(lista_processos, tamanho_do_vetor);
-
+          int progresso = 0;
+          int prog = 0;
           for (int i = 0; i < quantidade; i++)
           {
             Processo *p;
             Celula *celula;
             p = inicializa_processo(p);
             celula = inicializa_celula(celula, p);
-            if(i % 10000 == 0)
-            {
-              printf(".", i);
-            }
-            if (tipo_da_operacao == 0)
+            progresso++;
+            if (tipo_da_operacao == INSERE)
             {
               adiciona_celula(lista_processos, celula);
+              
             }
-            else if (tipo_da_operacao == 1)
+            else if (tipo_da_operacao == REMOVE)
             {
               remove_primeiro(lista_processos);
             }
+            if (progresso % (tamanho_do_vetor / 100) == 0)
+            {
+              progresso = 0;
+              prog++;
+              printf(".\r");
+              for (int j = 0; j < prog; j++)
+              {
+                printf("\xB2");
+              }
+              printf(" %d%%", prog);
+            }
           }
+          
         }
         nlinha++;
       }
-      #pragma endregion
+      printf("\n");
       if (linha)
         free(linha);
 
       fclose(file);
       t = clock() - t;
-      printf("Tempo de execucao: %f\n", ((float)t) / CLOCKS_PER_SEC);
+      printf("\n\nTempo de execucao: %2f\n (pressione enter para continuar)", ((float)t) / CLOCKS_PER_SEC);
       fflush(stdin);
       _get();
-      char *output = strtok(filename, ".");
-      strcat(output, ".out");
-      outputfile = fopen(output, "w");
+      
+      outputfile = fopen("output.txt", "a");
       if (outputfile == NULL || outputfilename == '\0')
       {
-        puts("Erro ao ler o arquivo\t (pressione enter para continuar)");
+        puts("Erro ao abrir o arquivo\t (pressione enter para continuar)");
         fflush(stdin);
         _get();
         continue;
       }
-      printf("Arquivo de saida escrito com sucesso\t (pressione enter para continuar)");
-      fflush(stdin);
-      _get();
 
-      #pragma region escrita_arquivo
+      char *charfile;
+      charfile = strtok(filename, ".");
+      fprintf(outputfile, "\n %s %f", charfile, ((float)t) / CLOCKS_PER_SEC);
+      fclose(outputfile);
+      printf("\nArquivo de saida escrito com sucesso\t (pressione enter para continuar)");
+      _get();
       // inicio da escrita do arquivo
 
-      fclose(outputfile);
-      #pragma endregion
+      //fclose(outputfile);
       break;
 
     default:
