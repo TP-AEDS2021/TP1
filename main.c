@@ -208,6 +208,7 @@ int main()
             adiciona_celula(lista_processos, celula);
           }
           printf("\nProcessos adicionados com sucesso!");
+          _get();
           break;
         case '1': ;
           int quantidader;
@@ -224,12 +225,15 @@ int main()
             remove_primeiro(lista_processos);
           }
           printf("\nProcessos removidos com sucesso!");
+          _get();
           break;
         case '2':
           num_celulas_ocupadas(lista_processos);
+          _get();
           break;
         case '3':
           imprime_lista(lista_processos);
+          _get();
           break;
         case '4':
           exit(0);

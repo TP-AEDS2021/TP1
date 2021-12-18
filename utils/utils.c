@@ -24,7 +24,8 @@ void menu()
 
 void menu_teclado()
 {
-  puts("\nOpcoes:");
+  cls();
+  puts("Opcoes:");
   puts("0 - Insercao de processos");
   puts("1 - Remocao de processos");
   puts("2 - Ver quantidade de processos");
