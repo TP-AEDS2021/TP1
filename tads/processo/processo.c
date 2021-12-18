@@ -10,7 +10,7 @@
 unsigned long long rand_uint64_slow(void)
 {
   unsigned long long r = 0;
-  for (int i = 0; i < 64; i++)
+  for (int i = 0; i < 10; i++)
   {
     r = r * 2 + rand() % 2;
   }
@@ -29,7 +29,6 @@ Processo* inicializa_processo(Processo *processo)
   }
   set_PID(processo, pid );  
   set_prioridade(processo, (rand() % 5) + 1);
-  printf("prioridade: %d\n", get_prioridade(processo));
   set_horario_criacao(processo, currentTime());
   return processo;
 }
