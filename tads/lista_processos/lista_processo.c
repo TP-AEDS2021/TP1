@@ -110,73 +110,97 @@ void adiciona_celula(Lista *lista, Celula *celula)
     lista->numCelOcupadas++;
   }
 }
-
-void remove(Lista *lista){
-  cursor index = lista->primeiro;
-  lista->plista[lista->plista[index].prox].ant = -1;
-  lista->primeiro = lista->plista[index].prox;
-  
-
-}
-
 void remove_primeiro(Lista *lista)
 {
-  cursor aux = lista->primeira_disponivel;
-  while (lista->primeiro > aux)
-  {
-    cursor aux2 = aux;
-    aux = lista->plista[aux].prox;
-    if (lista->primeiro < aux)
-    {
-      lista->plista[aux2].prox = lista->primeiro;
-      lista->plista[lista->primeiro].prox = aux2;
-      break;
+  // se a lista não estiver vazia
+  if (lista->numCelOcupadas != 0)
+  { 
+    cursor aux, aux2, aux3;
+    //se a lista tem mais de um elemento
+    if (lista->plista[lista->primeiro].prox != -1)
+    { 
+      //define o anterior do segundo elemento como -1
+      lista->plista[lista->plista[lista->primeiro].prox].ant = -1;
+      
+      // a lista estava completamente cheia
+      if (lista->primeira_disponivel == -1)
+      {
+        lista->primeira_disponivel = lista->primeiro;
+        //segundo elemento
+        aux = lista->plista[lista->primeiro].prox;
+
+        lista->plista[lista->primeiro].prox = -1;
+        lista->primeiro = aux;
+      }
+      else if (lista->primeiro < lista->primeira_disponivel)
+      {
+        aux = lista->primeira_disponivel;
+        lista->primeira_disponivel = lista->primeiro;
+        aux2 = lista->primeiro;
+        lista->primeiro = lista->plista[lista->primeiro].prox;
+        
+        lista->plista[aux2].prox = aux;
+      }
+      else
+      {
+        aux = lista->primeira_disponivel;
+        while (lista->primeiro > aux)
+        {
+          aux2 = aux;
+          aux = lista->plista[aux].prox;
+        }
+        lista->plista[aux2].prox = lista->primeiro;
+        aux3 = lista->plista[lista->primeiro].prox;
+        lista->plista[lista->primeiro].prox = aux;
+        lista->primeiro = aux3;
+      }
     }
-  }
-  cursor aux3 = lista->plista[lista->primeiro].prox;
-
-  if (lista->primeiro < lista->primeira_disponivel)
-  {
-    lista->primeira_disponivel = lista->primeiro;
-  }
-  if (lista->plista[lista->primeiro].prox != -1)
-  {
-    lista->plista[lista->plista[lista->primeiro].prox].ant = -1;
-  }
-
-  lista->primeiro = aux3;
-
-  lista->numCelOcupadas--;
-  if (lista->numCelOcupadas == 0)
-  {
-    lista->primeiro = lista->ultimo = -1;
+    // a lista só tem um elemento
+    else
+    {
+      if (lista->primeiro < lista->primeira_disponivel)
+      {
+        lista->plista[lista->primeiro].prox = lista->primeira_disponivel;
+        lista->primeira_disponivel = 0;
+        lista->primeiro = lista->ultimo = -1;
+      }
+      else
+      {
+        aux = lista->primeira_disponivel;
+        while (lista->primeiro > aux)
+        {
+          aux2 = aux;
+          aux = lista->plista[aux].prox;
+        }
+        lista->plista[aux2].prox = lista->primeiro;
+        lista->plista[lista->primeira_disponivel].prox = aux;
+        lista->primeiro = lista->ultimo = -1;
+      }
+    }
+    lista->numCelOcupadas--;
   }
 }
+
 void imprime_lista(Lista *lista)
 {
 
   // imprime a lista de processos
+  if(lista->numCelOcupadas == 0){
+    printf("Lista vazia\n");
+    return;
+  }
   printf("\nLista de processos:\n");
   Celula aux = lista->plista[lista->primeiro];
+  if(lista->numCelOcupadas == 1){
+    printf("%d\n", aux.processo->PID);
+    return;
+  }
   while (aux.prox != -1)
   {
-    printf("PID: %llu ", aux.processo->PID);
+    imprime_processo(aux.processo);
     aux = lista->plista[aux.prox];
   }
   return;
-}
-
-void get_lista(Lista* lista, char *string){
- 
-  char aux[100] = "";
-  Celula aux2 = lista->plista[lista->primeiro];
-  while (aux2.prox != -1)
-  {
-    sprintf(aux, "%llu >", aux2.processo->PID);
-    strcat(string, aux);
-    aux2 = lista->plista[aux2.prox];
-  }
-  
 }
 
 int get_celulas_ocupadas(Lista *lista)

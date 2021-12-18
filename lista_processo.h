@@ -274,4 +274,3 @@ void remove_primeiro(Lista *lista);
 void imprime_lista(Lista *lista);
 void num_celulas_ocupadas(Lista *lista);
 int get_celulas_ocupadas(Lista *lista);
-void get_lista(Lista *, char*);

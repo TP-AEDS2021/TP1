@@ -10,7 +10,7 @@
 unsigned long long rand_uint64_slow(void)
 {
   unsigned long long r = 0;
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 64; i++)
   {
     r = r * 2 + rand() % 2;
   }
@@ -36,7 +36,18 @@ Processo* inicializa_processo(Processo *processo)
 // funcao para imprimir o processo
 void imprime_processo(Processo* processo)
 {
-  printf("|\t%lu\t|\t%d\t|\t %d-%d-%d \t|\n", processo->PID, processo->prioridade, processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
+  printf("\n|\t%llu\t|", get_PID(processo));
+  printf("\t%d\t", get_prioridade(processo));
+  printf("|\t%d-%d-%d |\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
+
+  return;
+}
+
+void imprime_processo_arquivo(FILE* file, Processo* processo)
+{
+  fprintf(file, "\n|\t%llu\t|", get_PID(processo));
+  fprintf(file, "\t%d\t", get_prioridade(processo));
+  fprintf(file, "|\t%d-%d-%d |\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
   return;
 }
 
