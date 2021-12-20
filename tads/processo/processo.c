@@ -38,8 +38,7 @@ void imprime_processo(Processo* processo)
 {
   printf("\n|\t%llu\t|", get_PID(processo));
   printf("\t%d\t", get_prioridade(processo));
-  printf("|\t%d-%d-%d |\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
-
+  printf("|\t%d-%d-%d|\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
   return;
 }
 

@@ -32,6 +32,4 @@ void set_horario_criacao(Processo *, struct tm *);
 
 void imprime_processo_arquivo(FILE *, Processo *);
 
-char *str_horario(struct tm *);
-
 #endif

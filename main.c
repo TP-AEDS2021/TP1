@@ -33,7 +33,8 @@ int main()
   Lista *lista_processos;
   char *string;
   clock_t t;
-  srand(time(NULL));
+  srand(time(NULL) );
+  int nteste;
 
   do
   {
@@ -74,13 +75,27 @@ int main()
       }
       printf("Arquivo lido com sucesso\t (pressione enter para continuar)\n");
       _get();
+
       // inicio da leitura do arquivo
-      t = clock(); // armazena tempo
+      outputfile = fopen("output.txt", "a");
+      if (outputfile == NULL || outputfilename == '\0')
+      {
+        puts("Erro ao abrir o arquivo\t (pressione enter para continuar)");
+        fflush(stdin);
+        _get();
+        continue;
+      }
+      fprintf(outputfile, "\n%s:\n", filename);
+      // armazena tempo
+      t = clock();
+      // reinicia o numero de testes
+      nteste = 0;
       int tipo_da_operacao, quantidade, num_testes;
       size_t len = sizeof(char) * 20;
       char *linha = malloc(len);
       long int tamanho_do_vetor;
       int nlinha = 0;
+
       while (getline(&linha, &len, file) > 0)
       {
         if (nlinha == 0)
@@ -96,12 +111,17 @@ int main()
 
         if (nlinha > 1)
         {
+          // inicia o tempo
+          clock_t start_time = clock();
+          
+          nteste++;
           sscanf(linha, "%d %d", &tipo_da_operacao, &quantidade);
           free(lista_processos->plista);
           free(lista_processos);
           lista_processos = inicializa_lista(lista_processos, tamanho_do_vetor);
           int progresso = 0;
           int prog = 0;
+
           for (int i = 0; i < quantidade; i++)
           {
             Processo *p;
@@ -130,6 +150,10 @@ int main()
               printf(" %d%%", prog);
             }
           }
+          //finaliza o tempo
+          clock_t end_time = clock();
+          double time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+          fprintf(outputfile, "\n\tteste %d :%f s", nteste , time);
           
         }
         nlinha++;
@@ -140,28 +164,10 @@ int main()
 
       fclose(file);
       t = clock() - t;
-      printf("\n\nTempo de execucao: %2f\n (pressione enter para continuar)", ((float)t) / CLOCKS_PER_SEC);
+      printf("\n\nTempo total de execucao: %2f\n (pressione enter para continuar)", ((float)t) / CLOCKS_PER_SEC);
       fflush(stdin);
-      _get();
-      
-      outputfile = fopen("output.txt", "a");
-      if (outputfile == NULL || outputfilename == '\0')
-      {
-        puts("Erro ao abrir o arquivo\t (pressione enter para continuar)");
-        fflush(stdin);
-        _get();
-        continue;
-      }
-
-      char *charfile;
-      charfile = strtok(filename, ".");
-      fprintf(outputfile, "\n %s %f", charfile, ((float)t) / CLOCKS_PER_SEC);
       fclose(outputfile);
-      printf("\nArquivo de saida escrito com sucesso\t (pressione enter para continuar)");
       _get();
-      // inicio da escrita do arquivo
-
-      //fclose(outputfile);
       break;
 
     default:
