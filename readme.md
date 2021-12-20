@@ -31,9 +31,23 @@
 
 ## Comando para compilar o projeto <a name="compilando-o-projeto"></a>
 
+- **Usando MAKE**
+
 ```bash
     make
 ```
+
+- **Usando GCC**
+
+ ```bash
+  gcc -E ./tads/processo/processo.h -o processo.h
+  gcc -c ./tads/processo/processo.c -o processo.o
+  gcc -E ./tads/lista_processos/lista_processo.h -o lista_processo.h
+  gcc -c ./tads/lista_processos/lista_processo.c -o list_processo.o
+  gcc -c ./utils/utils.c -o utils.o
+  gcc -g main.c -o main
+```
+
 
 <div style="page-break-before:always">
 

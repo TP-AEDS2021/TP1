@@ -17,12 +17,12 @@ typedef struct Tlista {
   cursor ultimo;
   int numCelOcupadas;
   Celula *plista;
-  int tam;
+  long int tam;
 } Lista;
 
 Celula *inicializa_celula(Celula *, Processo *);
 void inicializa_celula_nula(Celula *, int);
-Lista * inicializa_lista(Lista *lista, int tamanho);
+Lista * inicializa_lista(Lista *lista,long int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_primeiro(Lista *lista);
 void imprime_lista(Lista *lista);

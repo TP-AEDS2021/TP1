@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 
 #define cls() printf("\e[1;1H\e[2J");
 
