@@ -104,6 +104,9 @@ int main()
         { // primeira linha7
           sscanf(linha, "%ld", &tamanho_do_vetor);
           printf("tamanho do vetor: %ld\n", tamanho_do_vetor);
+          free(lista_processos->plista);
+          free(lista_processos);
+          lista_processos = inicializa_lista(lista_processos, tamanho_do_vetor);
         }
         else if (nlinha == 1)
         { // segunda linha
@@ -118,9 +121,8 @@ int main()
           
           nteste++;
           sscanf(linha, "%d %d", &tipo_da_operacao, &quantidade);
-          free(lista_processos->plista);
-          free(lista_processos);
-          lista_processos = inicializa_lista(lista_processos, tamanho_do_vetor);
+          
+          
           int progresso = 0;
           int prog = 0;
 
