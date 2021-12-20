@@ -19,6 +19,8 @@
 #define INSERE 0
 #define REMOVE 1
 
+#define file_string_length 30
+
 #ifdef WIN32
 #define _get getch
 #else
@@ -91,7 +93,7 @@ int main()
       // reinicia o numero de testes
       nteste = 0;
       int tipo_da_operacao, quantidade, num_testes;
-      size_t len = sizeof(char) * 20;
+      size_t len = sizeof(char) * file_string_length;
       char *linha = malloc(len);
       long int tamanho_do_vetor;
       int nlinha = 0;
