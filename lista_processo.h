@@ -222,7 +222,7 @@ size_t wcsftime (wchar_t *, size_t, const wchar_t *, const struct tm *);
 # 7 "d:\\facul\\aeds\\tp_1\\tads\\processo\\processo.h"
 typedef struct Tprocesso
 {
-  unsigned long long PID;
+  unsigned long PID;
   int prioridade;
   struct tm *horario_criacao;
 } Processo;
@@ -234,9 +234,9 @@ Processo *inicializa_processo(Processo *);
 void imprime_processo(Processo *);
 
 
-long long int get_PID(Processo *);
+unsigned long get_PID(Processo *);
 
-void set_PID(Processo *, unsigned long long);
+void set_PID(Processo *, unsigned long pid);
 
 int get_prioridade(Processo *);
 
@@ -247,11 +247,9 @@ struct tm *get_horario_criacao(Processo *);
 void set_horario_criacao(Processo *, struct tm *);
 
 void imprime_processo_arquivo(FILE *, Processo *);
-
-char *str_horario(struct tm *);
 # 5 "./tads/lista_processos/lista_processo.h" 2
 
-typedef int cursor;
+typedef long int cursor;
 
 typedef struct Tcelula {
   Processo *processo;
@@ -263,16 +261,16 @@ typedef struct Tlista {
   cursor primeiro;
   cursor primeira_disponivel;
   cursor ultimo;
-  int numCelOcupadas;
+  long int numCelOcupadas;
   Celula *plista;
   long int tam;
 } Lista;
 
 Celula *inicializa_celula(Celula *, Processo *);
-void inicializa_celula_nula(Celula *, int);
 Lista * inicializa_lista(Lista *lista,long int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_primeiro(Lista *lista);
+void remove_teste(Lista *lista);
 void imprime_lista(Lista *lista);
 void num_celulas_ocupadas(Lista *lista);
-int get_celulas_ocupadas(Lista *lista);
+long int get_celulas_ocupadas(Lista *lista);

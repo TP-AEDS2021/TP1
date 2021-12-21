@@ -5,24 +5,29 @@
 #include "../../utils/utils.c"
 #include <inttypes.h>
 
+static unsigned long x = 123456789, y = 362436069, z = 521288629;
 
-
-unsigned long long rand_uint64_slow(void)
+unsigned long xorshf96(void)
 {
-  unsigned long long r = 0;
-  for (int i = 0; i < 64; i++)
-  {
-    r = r * 2 + rand() % 2;
-  }
-  return r;
+  unsigned long t;
+  x ^= x << 16;
+  x ^= x >> 5;
+  x ^= x << 1;
+
+  t = x;
+  x = y;
+  y = z;
+  z = t ^ x ^ y;
+
+  return z;
 }
 
 // funcao para inicializar o processo
 Processo* inicializa_processo(Processo *processo)
 {
   processo = (Processo *)malloc(sizeof(Processo));
-  
-  unsigned long long pid = rand_uint64_slow();
+
+  unsigned long pid = xorshf96();
   if(pid <= 0)
   {
     pid = pid * -1;
@@ -36,29 +41,28 @@ Processo* inicializa_processo(Processo *processo)
 // funcao para imprimir o processo
 void imprime_processo(Processo* processo)
 {
-  printf("\n|\t%llu\t|", get_PID(processo));
+  printf("\n|\t%lu\t|", get_PID(processo));
   printf("\t%d\t", get_prioridade(processo));
-  printf("|\t%d-%d-%d |\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
-
+  printf("|\t%d-%d-%d|\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
   return;
 }
 
 void imprime_processo_arquivo(FILE* file, Processo* processo)
 {
-  fprintf(file, "\n|\t%llu\t|", get_PID(processo));
+  fprintf(file, "\n|\t%lu\t|", get_PID(processo));
   fprintf(file, "\t%d\t", get_prioridade(processo));
   fprintf(file, "|\t%d-%d-%d |\n", processo->horario_criacao->tm_hour, processo->horario_criacao->tm_min, processo->horario_criacao->tm_sec);
   return;
 }
 
 // retorna o PID do processo
-long long int get_PID(Processo *processo)
+unsigned long get_PID(Processo *processo)
 {
   return processo->PID;
 }
 
 // define o PID do processo
-void set_PID(Processo *processo, unsigned long long PID)
+void set_PID(Processo *processo, unsigned long PID)
 {
   processo->PID = PID;
 }
