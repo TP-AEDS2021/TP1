@@ -37,13 +37,12 @@ int main()
   clock_t t;
   srand(time(NULL));
   int nteste;
-
   do
   {
     cls();
     // menu de opções
     menu();
-    fflush(stdin);
+
     puts("\nDigite a opcao desejada: ");
 #ifdef WIN32
     op = getch();
@@ -57,11 +56,11 @@ int main()
       exit(0);
       break;
     case '1':
-      fflush(stdin);
+
       puts("Digite o nome do arquivo: ");
       printf(">> ");
       scanf("%s", &filename);
-      fflush(stdin);
+
       if (filename == NULL)
       {
         puts("Erro ao ler o arquivo\n pressione enter para continuar");
@@ -83,7 +82,7 @@ int main()
       if (outputfile == NULL || outputfilename == '\0')
       {
         puts("Erro ao abrir o arquivo\t (pressione enter para continuar)");
-        fflush(stdin);
+
         _get();
         continue;
       }
@@ -92,10 +91,11 @@ int main()
       t = clock();
       // reinicia o numero de testes
       nteste = 0;
-      int tipo_da_operacao, quantidade, num_testes;
+      int tipo_da_operacao, num_testes;
+      unsigned long quantidade;
       size_t len = sizeof(char) * file_string_length;
       char *linha = malloc(len);
-      long int tamanho_do_vetor;
+      unsigned long tamanho_do_vetor;
       int nlinha = 0;
 
       while (getline(&linha, &len, file) > 0)
@@ -104,7 +104,6 @@ int main()
         { // primeira linha7
           sscanf(linha, "%ld", &tamanho_do_vetor);
           printf("tamanho do vetor: %ld\n", tamanho_do_vetor);
-          free(lista_processos->plista);
           free(lista_processos);
           lista_processos = inicializa_lista(lista_processos, tamanho_do_vetor);
         }
@@ -113,19 +112,15 @@ int main()
           sscanf(linha, "%d", &num_testes);
           printf("numero de operacoes: %d\n", num_testes);
         }
-
         if (nlinha > 1)
         {
           // inicia o tempo
           clock_t start_time = clock();
-
           nteste++;
-          sscanf(linha, "%d %d", &tipo_da_operacao, &quantidade);
-
-          int progresso = 0;
-          int prog = 0;
-
-          for (int i = 0; i < quantidade; i++)
+          unsigned long prog = 0;
+          unsigned long progresso = 0;
+          sscanf(linha, "%d %lu", &tipo_da_operacao, &quantidade);
+          for (unsigned long i = 0; i < quantidade; i++)
           {
             progresso++;
             if (tipo_da_operacao == INSERE)
@@ -138,13 +133,13 @@ int main()
             }
             else if (tipo_da_operacao == REMOVE)
             {
-              remove_primeiro(lista_processos);
+              remove_teste(lista_processos);
             }
             if (progresso % (tamanho_do_vetor / 100) == 0)
             {
               progresso = 0;
               prog++;
-              printf(".\r");
+              printf("\r");
               for (int j = 0; j < prog; j++)
               {
                 printf("\xB2");
@@ -155,25 +150,23 @@ int main()
           // finaliza o tempo
           clock_t end_time = clock();
           double time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-          fprintf(outputfile, "\n\tteste %d :%f s\n", nteste, time);
+          fprintf(outputfile, "\n\tteste %d :%3f s\n", nteste, time);
         }
         nlinha++;
       }
+
       printf("\n");
       if (linha)
         free(linha);
-
       fclose(file);
       t = clock() - t;
-      printf("\n\nTempo total de execucao: %2f\n (pressione enter para continuar)", ((float)t) / CLOCKS_PER_SEC);
-      fflush(stdin);
+      printf("\n\nTempo total de execucao: %3f\n (pressione enter para continuar)", ((float)t) / CLOCKS_PER_SEC);
       fclose(outputfile);
       _get();
       break;
 
     default:
       puts("Opcao invalida ( digite qualquer tecla )\n");
-      fflush(stdin);
       _get();
       break;
     }

@@ -33,7 +33,7 @@ optamos por criar na funçao principal opçoes de entrada por arquivo e entrada 
 | :--------- | :------- | :--------: | :-------------------------------------------------------- |
 | `menu()`   | `void`   |            | Imprime na saída padrão as opções de interação do sistema |
 | `cls()`    | `void`   |            | Limpa a saida padrão                                      |
-| `pid(int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
+| `pid(unsigned long int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
 
 ---
 
@@ -67,7 +67,7 @@ optamos por criar na funçao principal opçoes de entrada por arquivo e entrada 
 
   | Campo             | Tipo         | Descrição                                                                                  |
   | ----------------- | ------------ | ------------------------------------------------------------------------------------------ |
-  | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
+  | `PID`             | `unsigned long int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
   | `prioridade`      | `int`        | A prioridade do processo ( `de 1 a 5` ) .(`Gerado aleatoriamente na criação do processo`). |
   | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                    |
 
