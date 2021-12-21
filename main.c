@@ -35,7 +35,7 @@ int main()
   Lista *lista_processos;
   char *string;
   clock_t t;
-  srand(time(NULL) );
+  srand(time(NULL));
   int nteste;
 
   do
@@ -118,25 +118,23 @@ int main()
         {
           // inicia o tempo
           clock_t start_time = clock();
-          
+
           nteste++;
           sscanf(linha, "%d %d", &tipo_da_operacao, &quantidade);
-          
-          
+
           int progresso = 0;
           int prog = 0;
 
           for (int i = 0; i < quantidade; i++)
           {
-            Processo *p;
-            Celula *celula;
-            p = inicializa_processo(p);
-            celula = inicializa_celula(celula, p);
             progresso++;
             if (tipo_da_operacao == INSERE)
             {
+              Processo *p;
+              Celula *celula;
+              p = inicializa_processo(p);
+              celula = inicializa_celula(celula, p);
               adiciona_celula(lista_processos, celula);
-              
             }
             else if (tipo_da_operacao == REMOVE)
             {
@@ -154,11 +152,10 @@ int main()
               printf(" %d%%", prog);
             }
           }
-          //finaliza o tempo
+          // finaliza o tempo
           clock_t end_time = clock();
           double time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-          fprintf(outputfile, "\n\tteste %d :%f s", nteste , time);
-          
+          fprintf(outputfile, "\n\tteste %d :%f s\n", nteste, time);
         }
         nlinha++;
       }
