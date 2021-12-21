@@ -297,9 +297,8 @@ void imprime_lista(Lista *lista)
   }
   printf("\nLista de processos:\n");
   Celula aux = lista->plista[lista->primeiro];
-  if (lista->numCelOcupadas == 1)
-  {
-    printf("%lu\n", aux.processo->PID);
+  if(lista->numCelOcupadas == 1){
+    imprime_processo(aux.processo);//printf("%llu\n", aux.processo->PID);
     return;
   }
   while (aux.prox != -1)
@@ -307,6 +306,7 @@ void imprime_lista(Lista *lista)
     imprime_processo(aux.processo);
     aux = lista->plista[aux.prox];
   }
+  imprime_processo(lista->plista[lista->ultimo].processo);
   return;
 }
 
@@ -315,7 +315,7 @@ long get_celulas_ocupadas(Lista *lista)
   return lista->numCelOcupadas;
 }
 
-void numero_celulas_ocupadas(Lista *lista)
+void num_celulas_ocupadas(Lista *lista)
 {
   printf("\nNumero de celulas ocupadas: %ld\n", get_celulas_ocupadas(lista));
 }
