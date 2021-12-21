@@ -270,7 +270,6 @@ Celula *inicializa_celula(Celula *, Processo *);
 Lista * inicializa_lista(Lista *lista,long int tamanho);
 void adiciona_celula(Lista *lista, Celula *celula);
 void remove_primeiro(Lista *lista);
-void remove_teste(Lista *lista);
 void imprime_lista(Lista *lista);
 void num_celulas_ocupadas(Lista *lista);
 long int get_celulas_ocupadas(Lista *lista);
