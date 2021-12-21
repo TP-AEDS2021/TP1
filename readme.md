@@ -2,6 +2,7 @@
 
 ## Introdução
 
+1. [Introdução](#introduction)
 1. [Modulos e funções](#modules)
 1. [Como compilar o projeto](#compilando-o-projeto)
 1. [Tipos abstratos](#tipos)
@@ -10,10 +11,17 @@
    - [Cursor](#cursor)
    - [Celula](#celula)
    - [Lista](#lista)
-
 1. [Como compilar a documentação](#compilando-a-documentacao)
 
+
+
+contextualização de problema: informa cada obstáculo durante o desenvolvimento e em que situação ele ocorreu;
+contextualização de solução: explica as modificações feitas em processos ou no código que corrigiram o problema;
+detalhes técnicos: familiarizam o responsável por aquela parte do desenvolvimento sobre como, quando e por que aquela intervenção foi realizada.
+optamos por criar na funçao principal opçoes de entrada por arquivo e entrada por teclado
 ---
+
+
 
 ## Módulos <a name="modules"></a>
 
@@ -25,7 +33,7 @@
 | :--------- | :------- | :--------: | :-------------------------------------------------------- |
 | `menu()`   | `void`   |            | Imprime na saída padrão as opções de interação do sistema |
 | `cls()`    | `void`   |            | Limpa a saida padrão                                      |
-| `pid(int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
+| `pid(unsigned long int)` | `char *` |            | Gera um id único do processo de tamanho `20`              |
 
 ---
 
@@ -59,7 +67,7 @@
 
   | Campo             | Tipo         | Descrição                                                                                  |
   | ----------------- | ------------ | ------------------------------------------------------------------------------------------ |
-  | `PID`             | `int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
+  | `PID`             | `unsigned long int`        | Um indentifiador único de cada processo ( `PID` ). Usado para ordenar os processos         |
   | `prioridade`      | `int`        | A prioridade do processo ( `de 1 a 5` ) .(`Gerado aleatoriamente na criação do processo`). |
   | `horario_criacao` | `struct tm*` | A hora em que o processo foi criado, alocado na memória e inicializado.                    |
 
@@ -239,3 +247,4 @@
       --- ou ---
       npm install md-to-pdf
 ```
+

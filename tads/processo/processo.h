@@ -6,7 +6,7 @@
 // definicao do tipo
 typedef struct Tprocesso
 {
-  unsigned long long PID;     // identificador do processo
+  unsigned long PID;           // identificador do processo
   int prioridade;             // prioridade do processo
   struct tm *horario_criacao; // horario de criacao do processo
 } Processo;
@@ -18,9 +18,9 @@ Processo *inicializa_processo(Processo *);
 void imprime_processo(Processo *);
 
 // gets e sets
-long long int get_PID(Processo *);
+unsigned long get_PID(Processo *);
 
-void set_PID(Processo *, unsigned long long);
+void set_PID(Processo *, unsigned long pid);
 
 int get_prioridade(Processo *);
 
