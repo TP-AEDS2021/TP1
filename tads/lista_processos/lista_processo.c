@@ -100,7 +100,7 @@ void adiciona_celula(Lista *lista, Celula *celula)
   }
 }
 
-void remove_primeiro(Lista *lista)
+void remove_primeiro_teste(Lista *lista)
 {
   if (lista->primeiro == -1)
   {
@@ -230,7 +230,7 @@ void remove_primeiro(Lista *lista)
   }
 }
 
-void remove_teste(Lista *lista)
+void remove_primeiro(Lista *lista)
 {
   if (lista->numCelOcupadas != 0 && lista->primeiro != -1)
   {
